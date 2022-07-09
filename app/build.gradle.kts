@@ -50,6 +50,9 @@ android {
 
 dependencies {
 
+    implementation(project(":domain"))
+    implementation(project(":data"))
+
     implementation(libs.bundles.coroutines)
     implementation(libs.bundles.moshi)
     implementation(libs.bundles.navigation)
