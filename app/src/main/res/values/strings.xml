@@ -4,7 +4,7 @@
     <!-- Tabs -->
     <string name="tab_home_title">Home</string>
     <string name="tab_schedule_title">Schedule</string>
-    <string name="tab_profile_title">Profile</string>
+    <string name="tab_favorites_title">Favorites</string>
 
     <!-- Search -->
     <string name="search_title">Search</string>
