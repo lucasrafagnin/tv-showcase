@@ -15,6 +15,6 @@
     <string name="error_retry">Try again</string>
 
     <!-- Empty state -->
-    <string name="empty_title">Save your favorite games</string>
+    <string name="empty_title">Save your favorite shows</string>
     <string name="empty_description">Your favorites list will be shown here</string>
 </resources>
