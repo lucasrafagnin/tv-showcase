@@ -11,6 +11,8 @@ android {
 
 dependencies {
 
+    implementation(project(":domain"))
+
     implementation(libs.bundles.coroutines)
     implementation(libs.bundles.moshi)
     implementation(libs.bundles.retrofit)
