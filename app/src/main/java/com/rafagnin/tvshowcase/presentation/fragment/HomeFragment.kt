@@ -54,7 +54,7 @@ class HomeFragment : Fragment(), ShowsAdapter.AdapterCallback {
         }
     }
 
-    override fun onGameClick(id: Long) = openDetailScreen(id)
+    override fun onShowClick(id: Long) = openDetailScreen(id)
 
     private fun render(state: HomeState) {
         binding.list.run { if (state is ShowsLoaded) show() else gone() }

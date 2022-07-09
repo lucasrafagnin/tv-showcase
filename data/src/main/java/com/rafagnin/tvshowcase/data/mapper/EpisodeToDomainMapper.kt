@@ -9,6 +9,9 @@ class EpisodeToDomainMapper @Inject constructor() {
     fun map(json: EpisodeJson) = EpisodeModel(
         id = json.id,
         name = json.name,
-        image = json.image.medium
+        image = json.image?.medium,
+        season = json.season,
+        number = json.number,
+        airdate = json.airdate,
     )
 }
