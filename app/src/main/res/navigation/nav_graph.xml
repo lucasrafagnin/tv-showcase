@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/home_fragment">
+
+    <fragment
+        android:id="@+id/home_fragment"
+        android:name="com.rafagnin.tvshowcase.presentation.fragment.HomeFragment"
+        android:label="@string/tab_home_title"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/schedule_fragment"
+        android:name="com.rafagnin.tvshowcase.presentation.fragment.ScheduleFragment"
+        android:label="@string/tab_schedule_title"
+        tools:layout="@layout/fragment_schedule" />
+
+    <fragment
+        android:id="@+id/profile_fragment"
+        android:name="com.rafagnin.tvshowcase.presentation.fragment.ProfileFragment"
+        android:label="@string/tab_profile_title"
+        tools:layout="@layout/fragment_profile" />
+</navigation>
