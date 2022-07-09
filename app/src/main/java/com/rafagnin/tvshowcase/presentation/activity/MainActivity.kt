@@ -1,4 +1,4 @@
-package com.rafagnin.tvshowcase.presentantion.activity
+package com.rafagnin.tvshowcase.presentation.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import com.rafagnin.tvshowcase.R
