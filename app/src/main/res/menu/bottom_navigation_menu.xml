@@ -15,8 +15,8 @@
         app:showAsAction="ifRoom" />
 
     <item
-        android:id="@+id/profile_fragment"
-        android:icon="@drawable/ic_tab_profile"
-        android:title="@string/tab_profile_title"
+        android:id="@+id/favorites_fragment"
+        android:icon="@drawable/ic_tab_favorites"
+        android:title="@string/tab_favorites_title"
         app:showAsAction="ifRoom" />
 </menu>
