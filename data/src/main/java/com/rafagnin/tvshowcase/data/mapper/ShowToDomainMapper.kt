@@ -3,8 +3,9 @@ package com.rafagnin.tvshowcase.data.mapper
 import com.rafagnin.tvshowcase.data.model.ShowJson
 import com.rafagnin.tvshowcase.domain.model.ShowDetailModel
 import com.rafagnin.tvshowcase.domain.model.ShowModel
+import javax.inject.Inject
 
-class ShowToDomainMapper {
+class ShowToDomainMapper @Inject constructor() {
 
     fun map(json: ShowJson) = ShowModel(
         id = json.id,

@@ -2,8 +2,9 @@ package com.rafagnin.tvshowcase.data.mapper
 
 import com.rafagnin.tvshowcase.data.model.EpisodeJson
 import com.rafagnin.tvshowcase.domain.model.EpisodeModel
+import javax.inject.Inject
 
-class EpisodeToDomainMapper {
+class EpisodeToDomainMapper @Inject constructor() {
 
     fun map(json: EpisodeJson) = EpisodeModel(
         id = json.id,
