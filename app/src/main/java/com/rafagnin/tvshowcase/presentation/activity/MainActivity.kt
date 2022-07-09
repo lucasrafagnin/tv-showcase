@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
             setOf(
                 R.id.home_fragment,
                 R.id.schedule_fragment,
-                R.id.profile_fragment,
+                R.id.favorites_fragment,
             )
         )
 
