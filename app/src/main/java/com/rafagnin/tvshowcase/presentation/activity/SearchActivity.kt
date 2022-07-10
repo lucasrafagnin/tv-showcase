@@ -85,8 +85,8 @@ class SearchActivity : AppCompatActivity(), ShowsAdapter.AdapterCallback {
     }
 
     private fun openDetailScreen(id: Long) {
-        val intent = Intent(this, DetailActivity::class.java)
-        intent.putExtra(DetailActivity.ID_EXTRA, id)
+        val intent = Intent(this, ShowDetailActivity::class.java)
+        intent.putExtra(ShowDetailActivity.ID_EXTRA, id)
         startActivity(intent)
     }
 }

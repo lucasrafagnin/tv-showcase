@@ -13,7 +13,7 @@ import com.rafagnin.tvshowcase.ext.gone
 import com.rafagnin.tvshowcase.ext.show
 import com.rafagnin.tvshowcase.presentation.action.ScheduleAction
 import com.rafagnin.tvshowcase.presentation.action.ScheduleAction.Retry
-import com.rafagnin.tvshowcase.presentation.activity.DetailActivity
+import com.rafagnin.tvshowcase.presentation.activity.ShowDetailActivity
 import com.rafagnin.tvshowcase.presentation.adapter.ScheduleAdapter
 import com.rafagnin.tvshowcase.presentation.state.ScheduleState
 import com.rafagnin.tvshowcase.presentation.state.ScheduleState.*
@@ -60,8 +60,8 @@ class ScheduleFragment : Fragment(), ScheduleAdapter.AdapterCallback {
     }
 
     private fun openDetailScreen(id: Long) {
-        val intent = Intent(context, DetailActivity::class.java)
-        intent.putExtra(DetailActivity.ID_EXTRA, id)
+        val intent = Intent(context, ShowDetailActivity::class.java)
+        intent.putExtra(ShowDetailActivity.ID_EXTRA, id)
         startActivity(intent)
     }
 
