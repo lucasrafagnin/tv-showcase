@@ -26,13 +26,13 @@ class FavoritesViewModel @Inject constructor(
     val _state: StateFlow<FavoritesState> = state
 
     init {
-        getGames()
+        getShows()
         viewModelScope.launch {
             handleActions()
         }
     }
 
-    private fun getGames() = viewModelScope.launch(Dispatchers.IO) {
+    private fun getShows() = viewModelScope.launch(Dispatchers.IO) {
         getFavorites.invoke()
             .catch { state.value = Error }
             .collect {
@@ -53,7 +53,7 @@ class FavoritesViewModel @Inject constructor(
             when (it) {
                 FavoritesAction.Retry -> {
                     state.value = Loading
-                    getGames()
+                    getShows()
                 }
             }
         }
