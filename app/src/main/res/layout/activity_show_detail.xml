@@ -141,7 +141,7 @@
                 android:drawablePadding="4dp"
                 android:ellipsize="end"
                 android:maxLines="1"
-                app:drawableStartCompat="@drawable/ic_time"
+                app:drawableStartCompat="@drawable/ic_timer"
                 app:drawableTint="@color/red"
                 app:layout_constraintEnd_toEndOf="@id/guide_end"
                 app:layout_constraintStart_toEndOf="@id/poster_barrier"

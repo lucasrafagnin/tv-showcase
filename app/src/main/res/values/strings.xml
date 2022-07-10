@@ -30,5 +30,5 @@
     <string name="empty_description">Your favorites list will be shown here</string>
 
     <!-- Common -->
-    <string name="common_minutes">%1$d minutes</string>
+    <string name="common_minutes">%1$d min</string>
 </resources>

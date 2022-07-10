@@ -11,7 +11,6 @@ import com.rafagnin.tvshowcase.domain.model.EpisodeModel
 import com.rafagnin.tvshowcase.ext.show
 import dagger.hilt.android.AndroidEntryPoint
 
-
 @AndroidEntryPoint
 class EpisodeActivity : AppCompatActivity() {
 
