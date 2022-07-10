@@ -27,7 +27,7 @@ class ShowRepositoryImpl @Inject constructor(
     }
 
     override suspend fun searchShows(query: String): List<ShowModel> {
-        return remoteDataSource.search(query).map { showToDomainMapper.map(it) }
+        return remoteDataSource.search(query).map { showToDomainMapper.map(it.show) }
     }
 
     override suspend fun getShowDetail(id: Long): ShowDetailModel {
