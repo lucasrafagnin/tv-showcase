@@ -1,6 +1,7 @@
 package com.rafagnin.tvshowcase.data.remote.service
 
 import com.rafagnin.tvshowcase.data.model.EpisodeJson
+import com.rafagnin.tvshowcase.data.model.SearchJson
 import com.rafagnin.tvshowcase.data.model.ShowJson
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -10,8 +11,8 @@ interface ApiService {
 
     @GET("search/shows")
     suspend fun search(
-        @Query("query") query: String?
-    ): List<ShowJson>
+        @Query("q") query: String?
+    ): List<SearchJson>
 
     @GET("shows")
     suspend fun getShows(): List<ShowJson>
