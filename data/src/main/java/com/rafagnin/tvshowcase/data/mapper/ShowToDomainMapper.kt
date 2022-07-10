@@ -14,6 +14,12 @@ class ShowToDomainMapper @Inject constructor() {
         image = json.image?.medium
     )
 
+    fun map(model: ShowDetailModel) = LocalShowModel(
+        id = model.id,
+        name = model.name,
+        image = model.image
+    )
+
     fun map(local: LocalShowModel) = ShowModel(
         id = local.id,
         name = local.name,

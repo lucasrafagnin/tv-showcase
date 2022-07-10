@@ -3,8 +3,11 @@ package com.rafagnin.tvshowcase.presentation.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.rafagnin.tvshowcase.domain.Resource
+import com.rafagnin.tvshowcase.domain.model.ShowDetailModel
+import com.rafagnin.tvshowcase.domain.usecase.FavoriteShow
 import com.rafagnin.tvshowcase.domain.usecase.GetShowDetail
 import com.rafagnin.tvshowcase.presentation.action.ShowDetailAction
+import com.rafagnin.tvshowcase.presentation.action.ShowDetailAction.Favorite
 import com.rafagnin.tvshowcase.presentation.state.ShowDetailState
 import com.rafagnin.tvshowcase.presentation.state.ShowDetailState.Loaded
 import com.rafagnin.tvshowcase.presentation.state.ShowDetailState.Loading
@@ -20,6 +23,7 @@ import javax.inject.Inject
 @HiltViewModel
 class ShowDetailViewModel @Inject constructor(
     private val getShowDetail: GetShowDetail,
+    private val favoriteShow: FavoriteShow
 ) : ViewModel() {
 
     private val state: MutableStateFlow<ShowDetailState> = MutableStateFlow(Loading)
@@ -41,10 +45,17 @@ class ShowDetailViewModel @Inject constructor(
         }
     }
 
+    private fun favoriteShow(model: ShowDetailModel) = viewModelScope.launch(Dispatchers.IO) {
+        when (val result = favoriteShow(model, !model.favorite)) {
+            is Resource.Success -> state.value = Loaded(result.data)
+            else -> state.value = Error
+        }
+    }
+
     private suspend fun handleActions() {
         actionFlow.collect {
             when (it) {
-                is ShowDetailAction.Favorite -> {}
+                is Favorite -> favoriteShow(it.model)
             }
         }
     }

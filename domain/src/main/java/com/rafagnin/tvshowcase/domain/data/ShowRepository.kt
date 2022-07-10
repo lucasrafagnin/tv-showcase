@@ -7,6 +7,8 @@ import kotlinx.coroutines.flow.Flow
 
 interface ShowRepository {
     fun getFavorites(): Flow<List<ShowModel>>
+    fun favoriteShow(model: ShowDetailModel, toFavorite: Boolean)
+    fun isShowFavorite(id: Long): Boolean
     suspend fun searchShows(query: String): List<ShowModel>
     suspend fun getShows(): List<ShowModel>
     suspend fun getShowDetail(id: Long): ShowDetailModel
