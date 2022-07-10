@@ -16,6 +16,9 @@
     <string name="search_hint">Search a show</string>
     <string name="search_result">Search for: %1$s</string>
 
+    <!-- Show detail -->
+    <string name="show_description">Description</string>
+
     <!-- Error state -->
     <string name="error_title">Something went wrong</string>
     <string name="error_description">An error occurred, please try again later</string>

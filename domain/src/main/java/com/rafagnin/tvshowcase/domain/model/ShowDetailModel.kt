@@ -6,8 +6,9 @@ data class ShowDetailModel(
     val image: String?,
     val description: String?,
     val rating: Float?,
-    val genres: List<String>?,
+    val genres: String?,
     val averageRuntime: Int?,
     val status: String?,
+    val network: String?,
     val favorite: Boolean
 )
