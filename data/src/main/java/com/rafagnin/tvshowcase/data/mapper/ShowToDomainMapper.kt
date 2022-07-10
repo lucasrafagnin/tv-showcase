@@ -1,5 +1,6 @@
 package com.rafagnin.tvshowcase.data.mapper
 
+import com.rafagnin.tvshowcase.data.model.LocalShowModel
 import com.rafagnin.tvshowcase.data.model.ShowJson
 import com.rafagnin.tvshowcase.domain.model.ShowDetailModel
 import com.rafagnin.tvshowcase.domain.model.ShowModel
@@ -11,6 +12,12 @@ class ShowToDomainMapper @Inject constructor() {
         id = json.id,
         name = json.name,
         image = json.image.medium
+    )
+
+    fun map(local: LocalShowModel) = ShowModel(
+        id = local.id,
+        name = local.name,
+        image = local.image
     )
 
     fun mapDetail(json: ShowJson) = ShowDetailModel(

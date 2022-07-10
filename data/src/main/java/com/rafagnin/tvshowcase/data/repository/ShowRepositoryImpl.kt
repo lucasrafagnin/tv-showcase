@@ -9,6 +9,7 @@ import com.rafagnin.tvshowcase.domain.model.EpisodeModel
 import com.rafagnin.tvshowcase.domain.model.ShowDetailModel
 import com.rafagnin.tvshowcase.domain.model.ShowModel
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 class ShowRepositoryImpl @Inject constructor(
@@ -18,9 +19,8 @@ class ShowRepositoryImpl @Inject constructor(
     private val episodeToDomainMapper: EpisodeToDomainMapper
 ) : ShowRepository {
 
-    override fun getFavorites(): Flow<List<ShowModel>> {
-        TODO("Not yet implemented")
-    }
+    override fun getFavorites(): Flow<List<ShowModel>> = localDataSource.getFavorites()
+        .map { it.map { model -> showToDomainMapper.map(model) } }
 
     override suspend fun getShows(): List<ShowModel> {
         return remoteDataSource.getShows().map { showToDomainMapper.map(it) }
