@@ -15,6 +15,7 @@ import com.rafagnin.tvshowcase.presentation.adapter.ShowsAdapter
 import com.rafagnin.tvshowcase.presentation.state.SearchState
 import com.rafagnin.tvshowcase.presentation.state.SearchState.Loading
 import com.rafagnin.tvshowcase.presentation.state.SearchState.ShowsLoaded
+import com.rafagnin.tvshowcase.presentation.state.SearchState.Error
 import com.rafagnin.tvshowcase.presentation.viewmodel.SearchViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -54,24 +55,13 @@ class SearchActivity : AppCompatActivity(), ShowsAdapter.AdapterCallback {
         supportActionBar?.setDisplayShowHomeEnabled(true)
     }
 
-    private fun render(state: SearchState) = when (state) {
-        is ShowsLoaded -> {
-            adapter.update(state.items)
-            binding.toolbar.title = getString(R.string.search_result, state.query)
-            binding.list.show()
-            binding.loading.gone()
-            binding.errorState.root.gone()
-        }
-        is Loading -> {
-            binding.list.gone()
-            binding.loading.show()
-            binding.errorState.root.gone()
-        }
-        else -> {
-            binding.list.gone()
-            binding.loading.gone()
-            binding.errorState.root.show()
-        }
+    private fun render(state: SearchState) {
+        binding.list.run { if (state is ShowsLoaded) show() else gone() }
+        binding.toolbar.run { if (state is ShowsLoaded) title = getString(R.string.search_result, state.query) }
+        binding.loading.run { if (state is Loading) show() else gone() }
+        binding.errorState.root.run { if (state is Error) show() else gone() }
+
+        if (state is ShowsLoaded) adapter.update(state.items)
     }
 
     private fun handleIntent(intent: Intent) {

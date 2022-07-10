@@ -30,6 +30,6 @@
     @com.squareup.moshi.ToJson <methods>;
 }
 
--keepnames @kotlin.Metadata class com.rafagnin.gaming.data.model.**
--keep class com.rafagnin.gaming.data.model.** { *; }
--keepclassmembers class com.rafagnin.gaming.data.model.** { *; }
+-keepnames @kotlin.Metadata class com.rafagnin.tvshowcase.data.model.**
+-keep class com.rafagnin.tvshowcase.data.model.** { *; }
+-keepclassmembers class com.rafagnin.tvshowcase.data.model.** { *; }
