@@ -12,7 +12,7 @@ import com.rafagnin.tvshowcase.databinding.FragmentFavoritesBinding
 import com.rafagnin.tvshowcase.ext.gone
 import com.rafagnin.tvshowcase.ext.show
 import com.rafagnin.tvshowcase.presentation.action.FavoritesAction.Retry
-import com.rafagnin.tvshowcase.presentation.activity.DetailActivity
+import com.rafagnin.tvshowcase.presentation.activity.ShowDetailActivity
 import com.rafagnin.tvshowcase.presentation.adapter.ShowsAdapter
 import com.rafagnin.tvshowcase.presentation.state.FavoritesState
 import com.rafagnin.tvshowcase.presentation.state.FavoritesState.*
@@ -66,8 +66,8 @@ class FavoritesFragment : Fragment(), ShowsAdapter.AdapterCallback {
     }
 
     private fun openDetailScreen(id: Long) {
-        val intent = Intent(context, DetailActivity::class.java)
-        intent.putExtra(DetailActivity.ID_EXTRA, id)
+        val intent = Intent(context, ShowDetailActivity::class.java)
+        intent.putExtra(ShowDetailActivity.ID_EXTRA, id)
         startActivity(intent)
     }
 }
