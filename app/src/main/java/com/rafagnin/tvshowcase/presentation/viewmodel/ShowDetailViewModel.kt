@@ -8,6 +8,7 @@ import com.rafagnin.tvshowcase.domain.usecase.FavoriteShow
 import com.rafagnin.tvshowcase.domain.usecase.GetShowDetail
 import com.rafagnin.tvshowcase.presentation.action.ShowDetailAction
 import com.rafagnin.tvshowcase.presentation.action.ShowDetailAction.Favorite
+import com.rafagnin.tvshowcase.presentation.action.ShowDetailAction.Retry
 import com.rafagnin.tvshowcase.presentation.state.ShowDetailState
 import com.rafagnin.tvshowcase.presentation.state.ShowDetailState.Loaded
 import com.rafagnin.tvshowcase.presentation.state.ShowDetailState.Loading
@@ -56,6 +57,7 @@ class ShowDetailViewModel @Inject constructor(
         actionFlow.collect {
             when (it) {
                 is Favorite -> favoriteShow(it.model)
+                is Retry -> getShowDetail(it.id)
             }
         }
     }
