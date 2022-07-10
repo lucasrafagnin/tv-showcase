@@ -1,16 +1,22 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Theme.TvShowcase" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_500</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
+<resources>
+
+    <style name="Theme.TvShowcase" parent="Theme.MaterialComponents.NoActionBar">
+        <item name="colorPrimary">@color/red</item>
+        <item name="colorPrimaryVariant">@color/blue</item>
         <item name="colorOnPrimary">@color/white</item>
-        <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/teal_200</item>
-        <item name="colorSecondaryVariant">@color/teal_700</item>
-        <item name="colorOnSecondary">@color/black</item>
-        <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
-        <!-- Customize your theme here. -->
+        <item name="colorOnSecondary">@color/gray</item>
+        <item name="android:statusBarColor">@color/status_bar</item>
+        <item name="android:windowBackground">@color/blue_dark</item>
+    </style>
+
+    <style name="ToolbarStyle">
+        <item name="android:background">@color/blue</item>
+        <item name="titleTextAppearance">@style/ToolbarTitle</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="ToolbarTitle" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textColor">@color/white</item>
     </style>
 </resources>
