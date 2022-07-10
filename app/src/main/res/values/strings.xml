@@ -6,6 +6,11 @@
     <string name="tab_schedule_title">Schedule</string>
     <string name="tab_favorites_title">Favorites</string>
 
+    <!-- Schedule -->
+    <string name="schedule_season_prefix">S%1$s</string>
+    <string name="schedule_episode_prefix">E%1$s</string>
+    <string name="schedule_separator">|</string>
+
     <!-- Search -->
     <string name="search_title">Search</string>
 
