@@ -1,5 +1,6 @@
 package com.rafagnin.tvshowcase.data.mapper
 
+import com.rafagnin.tvshowcase.data.ext.parseHtml
 import com.rafagnin.tvshowcase.data.model.LocalShowModel
 import com.rafagnin.tvshowcase.data.model.ShowJson
 import com.rafagnin.tvshowcase.domain.model.ShowDetailModel
@@ -30,7 +31,7 @@ class ShowToDomainMapper @Inject constructor() {
         id = json.id,
         name = json.name,
         image = json.image?.medium,
-        description = json.summary,
+        description = json.summary.parseHtml(),
         averageRuntime = json.averageRuntime,
         genres = json.genres,
         status = json.status,
