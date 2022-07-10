@@ -8,5 +8,7 @@ data class EpisodeJson(
     @Json(name = "season") val season: String?,
     @Json(name = "number") val number: String?,
     @Json(name = "airdate") val airdate: String?,
-    @Json(name = "image") val image: ImageJson?
+    @Json(name = "airstamp") val airstamp: String?,
+    @Json(name = "image") val image: ImageJson?,
+    @Json(name = "_embedded") val embedded: EmbeddedJson?
 )

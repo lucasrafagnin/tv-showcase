@@ -5,6 +5,8 @@ data class EpisodeModel(
     val name: String?,
     val image: String?,
     val season: String?,
-    val number: String?,
+    val episode: String?,
     val airdate: String?,
+    val hourAirdate: String?,
+    val show: ShowModel?
 )
