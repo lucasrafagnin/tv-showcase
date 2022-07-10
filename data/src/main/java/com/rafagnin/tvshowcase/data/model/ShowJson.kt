@@ -9,8 +9,9 @@ data class ShowJson(
     @Json(name = "summary") val summary: String?,
     @Json(name = "airdate") val airdate: String?,
     @Json(name = "premiered") val premiered: String?,
-    @Json(name = "averageRuntime") val averageRuntime: String?,
+    @Json(name = "averageRuntime") val averageRuntime: Int?,
     @Json(name = "genres") val genres: List<String>?,
     @Json(name = "_embedded") val embedded: EmbeddedJson?,
-    @Json(name = "image") val image: ImageJson?
+    @Json(name = "image") val image: ImageJson?,
+    @Json(name = "rating") val rating: RatingJson?
 )
