@@ -9,11 +9,12 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.rafagnin.tvshowcase.databinding.FragmentScheduleBinding
+import com.rafagnin.tvshowcase.domain.model.EpisodeModel
 import com.rafagnin.tvshowcase.ext.gone
 import com.rafagnin.tvshowcase.ext.show
 import com.rafagnin.tvshowcase.presentation.action.ScheduleAction
 import com.rafagnin.tvshowcase.presentation.action.ScheduleAction.Retry
-import com.rafagnin.tvshowcase.presentation.activity.ShowDetailActivity
+import com.rafagnin.tvshowcase.presentation.activity.EpisodeActivity
 import com.rafagnin.tvshowcase.presentation.adapter.ScheduleAdapter
 import com.rafagnin.tvshowcase.presentation.state.ScheduleState
 import com.rafagnin.tvshowcase.presentation.state.ScheduleState.*
@@ -49,7 +50,7 @@ class ScheduleFragment : Fragment(), ScheduleAdapter.AdapterCallback {
         binding.errorState.retry.setOnClickListener { click(Retry) }
     }
 
-    override fun onEpisodeClick(id: Long) = openDetailScreen(id)
+    override fun onEpisodeClick(model: EpisodeModel) = openDetailScreen(model)
 
     private fun render(state: ScheduleState) {
         binding.list.run { if (state is EpisodesLoaded) show() else gone() }
@@ -59,9 +60,9 @@ class ScheduleFragment : Fragment(), ScheduleAdapter.AdapterCallback {
         if (state is EpisodesLoaded) adapter.update(state.items)
     }
 
-    private fun openDetailScreen(id: Long) {
-        val intent = Intent(context, ShowDetailActivity::class.java)
-        intent.putExtra(ShowDetailActivity.ID_EXTRA, id)
+    private fun openDetailScreen(model: EpisodeModel) {
+        val intent = Intent(context, EpisodeActivity::class.java)
+        intent.putExtra(EpisodeActivity.ID_EXTRA, model)
         startActivity(intent)
     }
 

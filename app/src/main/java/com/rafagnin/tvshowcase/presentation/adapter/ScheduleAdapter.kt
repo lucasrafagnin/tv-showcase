@@ -44,12 +44,12 @@ class ScheduleAdapter(
             view.season.text = view.root.context.getString(R.string.schedule_season_prefix, item.season)
             view.episode.text = view.root.context.getString(R.string.schedule_episode_prefix, item.episode)
             view.root.setOnClickListener {
-                callback.onEpisodeClick(item.id)
+                callback.onEpisodeClick(item)
             }
         }
     }
 
     interface AdapterCallback {
-        fun onEpisodeClick(id: Long)
+        fun onEpisodeClick(model: EpisodeModel)
     }
 }
