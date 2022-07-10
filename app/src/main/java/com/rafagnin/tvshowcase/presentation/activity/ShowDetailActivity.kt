@@ -40,7 +40,7 @@ class ShowDetailActivity : AppCompatActivity() {
         viewModel.getShowDetail(detailId)
         lifecycleScope.launchWhenCreated { viewModel._state.collect { render(it) } }
 
-        viewModel._state
+        setToolbar()
     }
 
     private fun render(state: ShowDetailState) {
@@ -69,5 +69,11 @@ class ShowDetailActivity : AppCompatActivity() {
             }
         }
         show()
+    }
+
+    private fun setToolbar() {
+        setSupportActionBar(binding.toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
     }
 }

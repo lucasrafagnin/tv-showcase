@@ -24,7 +24,6 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setSupportActionBar(binding.toolbar)
         setNavController()
     }
 
@@ -60,5 +59,6 @@ class MainActivity : AppCompatActivity() {
 
         binding.toolbar.setupWithNavController(navHost.navController, appBarConfiguration)
         binding.bottomNavigation.setupWithNavController(navHost.navController)
+        setSupportActionBar(binding.toolbar)
     }
 }
