@@ -13,5 +13,7 @@ data class ShowJson(
     @Json(name = "genres") val genres: List<String>?,
     @Json(name = "_embedded") val embedded: EmbeddedJson?,
     @Json(name = "image") val image: ImageJson?,
+    @Json(name = "network") val network: NetworkJson?,
+    @Json(name = "webChannel") val webChannel: NetworkJson?,
     @Json(name = "rating") val rating: RatingJson?
 )

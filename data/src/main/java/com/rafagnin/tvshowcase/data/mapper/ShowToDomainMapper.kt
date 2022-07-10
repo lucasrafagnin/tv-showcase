@@ -33,9 +33,10 @@ class ShowToDomainMapper @Inject constructor() {
         image = json.image?.medium,
         description = json.summary.parseHtml(),
         averageRuntime = json.averageRuntime,
-        genres = json.genres,
+        genres = json.genres?.joinToString(", "),
         status = json.status,
         rating = json.rating?.average,
+        network = json.webChannel?.name ?: json.network?.name,
         favorite = false
     )
 }

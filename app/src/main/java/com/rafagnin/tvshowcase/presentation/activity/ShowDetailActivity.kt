@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import coil.load
+import coil.transform.RoundedCornersTransformation
 import com.rafagnin.tvshowcase.R
 import com.rafagnin.tvshowcase.databinding.ActivityShowDetailBinding
 import com.rafagnin.tvshowcase.domain.model.ShowDetailModel
@@ -52,13 +53,19 @@ class ShowDetailActivity : AppCompatActivity() {
 
     private fun setupView(show: ShowDetailModel?) = show?.let {
         setFavorite(show)
-        binding.poster.load(it.image)
+        binding.poster.load(it.image) {
+            transformations(RoundedCornersTransformation(10f))
+        }
         binding.toolbar.title = it.name
-        binding.genres.text = it.genres.toString()
+        binding.genres.text = it.genres
         binding.rate.text = it.rating.toString()
-        binding.averageRuntime.text = it.averageRuntime.toString()
         binding.description.text = it.description
         binding.status.text = it.status
+        binding.network.text = it.network
+        show.averageRuntime?.let {
+            binding.averageRuntime.text = getString(R.string.common_minutes, it)
+            binding.averageRuntime.show()
+        }
     }
 
     private fun setFavorite(show: ShowDetailModel) = with(binding.favorite) {
