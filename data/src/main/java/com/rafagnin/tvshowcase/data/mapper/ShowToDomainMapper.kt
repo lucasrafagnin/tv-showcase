@@ -1,13 +1,17 @@
 package com.rafagnin.tvshowcase.data.mapper
 
 import com.rafagnin.tvshowcase.data.ext.parseHtml
+import com.rafagnin.tvshowcase.data.model.CastJson
 import com.rafagnin.tvshowcase.data.model.LocalShowModel
 import com.rafagnin.tvshowcase.data.model.ShowJson
+import com.rafagnin.tvshowcase.domain.model.CharacterModel
 import com.rafagnin.tvshowcase.domain.model.ShowDetailModel
 import com.rafagnin.tvshowcase.domain.model.ShowModel
 import javax.inject.Inject
 
-class ShowToDomainMapper @Inject constructor() {
+class ShowToDomainMapper @Inject constructor(
+    private val characterToDomainMapper: CharacterToDomainMapper
+) {
 
     fun map(json: ShowJson) = ShowModel(
         id = json.id,
@@ -37,6 +41,7 @@ class ShowToDomainMapper @Inject constructor() {
         status = json.status,
         rating = json.rating?.average,
         network = json.webChannel?.name ?: json.network?.name,
+        characters = json.embedded?.cast?.map { characterToDomainMapper.map(it) },
         favorite = false
     )
 }

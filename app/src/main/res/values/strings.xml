@@ -18,6 +18,7 @@
 
     <!-- Show detail -->
     <string name="show_description">Description</string>
+    <string name="show_characters">Cast</string>
 
     <!-- Error state -->
     <string name="error_title">Something went wrong</string>

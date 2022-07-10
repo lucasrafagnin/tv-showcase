@@ -1,13 +1,18 @@
 package com.rafagnin.tvshowcase.presentation.activity
 
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import coil.load
+import coil.transform.CircleCropTransformation
 import coil.transform.RoundedCornersTransformation
 import com.rafagnin.tvshowcase.R
 import com.rafagnin.tvshowcase.databinding.ActivityShowDetailBinding
+import com.rafagnin.tvshowcase.domain.model.CharacterModel
 import com.rafagnin.tvshowcase.domain.model.ShowDetailModel
 import com.rafagnin.tvshowcase.ext.gone
 import com.rafagnin.tvshowcase.ext.show
@@ -62,10 +67,11 @@ class ShowDetailActivity : AppCompatActivity() {
         binding.description.text = it.description
         binding.status.text = it.status
         binding.network.text = it.network
-        show.averageRuntime?.let {
+        it.averageRuntime?.let {
             binding.averageRuntime.text = getString(R.string.common_minutes, it)
             binding.averageRuntime.show()
         }
+        setCast(show.characters)
     }
 
     private fun setFavorite(show: ShowDetailModel) = with(binding.favorite) {
@@ -76,6 +82,23 @@ class ShowDetailActivity : AppCompatActivity() {
             }
         }
         show()
+    }
+
+    private fun setCast(characters: List<CharacterModel>?) {
+        binding.characters.removeAllViews()
+        characters?.forEach { character ->
+            val inflater = LayoutInflater.from(this@ShowDetailActivity)
+            val view = inflater.inflate(R.layout.item_character, binding.characters, false)
+            val image = view.findViewById(R.id.profile) as ImageView
+            val name = view.findViewById(R.id.name) as TextView
+            name.text = character.name
+            image.load(character.image) {
+                transformations(CircleCropTransformation())
+                placeholder(R.drawable.ic_downloading)
+                error(R.drawable.ic_cast_placeholder)
+            }
+            binding.characters.addView(view)
+        }
     }
 
     private fun setToolbar() {

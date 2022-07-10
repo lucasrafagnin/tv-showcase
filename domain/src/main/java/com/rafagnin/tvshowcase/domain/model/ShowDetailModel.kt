@@ -10,5 +10,6 @@ data class ShowDetailModel(
     val averageRuntime: Int?,
     val status: String?,
     val network: String?,
+    val characters: List<CharacterModel>?,
     val favorite: Boolean
 )
