@@ -46,6 +46,11 @@ class ShowDetailActivity : AppCompatActivity() {
         viewModel.getShowDetail(detailId)
         lifecycleScope.launchWhenCreated { viewModel._state.collect { render(it) } }
 
+        binding.error.retry.setOnClickListener {
+            lifecycleScope.launch {
+                viewModel.actionFlow.emit(ShowDetailAction.Retry(detailId))
+            }
+        }
         setToolbar()
     }
 
@@ -65,13 +70,13 @@ class ShowDetailActivity : AppCompatActivity() {
         binding.toolbar.title = it.name
         binding.genres.text = it.genres
         binding.rate.text = it.rating.toString()
-        binding.description.text = it.description
         binding.status.text = it.status
         binding.network.text = it.network
         it.averageRuntime?.let {
             binding.averageRuntime.text = getString(R.string.common_minutes, it)
             binding.averageRuntime.show()
         }
+        setDescription(show.description)
         setCast(show.characters)
     }
 
@@ -83,6 +88,11 @@ class ShowDetailActivity : AppCompatActivity() {
             }
         }
         show()
+    }
+
+    private fun setDescription(description: String?) {
+        binding.description.text = description
+        binding.description.setOnClickListener { binding.description.toggle() }
     }
 
     private fun setCast(characters: List<CharacterModel>?) {

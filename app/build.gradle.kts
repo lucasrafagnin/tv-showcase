@@ -61,6 +61,7 @@ dependencies {
 
     implementation(libs.appCompat)
     implementation(libs.coil)
+    implementation(libs.expandableText)
     implementation(libs.hilt)
     implementation(libs.liveData)
     implementation(libs.material)
