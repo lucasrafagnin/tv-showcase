@@ -1,5 +1,6 @@
 package com.rafagnin.tvshowcase.presentation.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.widget.ImageView
@@ -108,8 +109,15 @@ class ShowDetailActivity : AppCompatActivity() {
                 placeholder(R.drawable.ic_downloading)
                 error(R.drawable.ic_cast_placeholder)
             }
+            view.setOnClickListener { openCharacter(character) }
             binding.characters.addView(view)
         }
+    }
+
+    private fun openCharacter(character: CharacterModel) {
+        val intent = Intent(this, CharacterActivity::class.java)
+        intent.putExtra(ID_EXTRA, character)
+        startActivity(intent)
     }
 
     private fun setToolbar() {
