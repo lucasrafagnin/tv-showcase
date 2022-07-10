@@ -24,6 +24,11 @@ class ShowToDomainMapper @Inject constructor() {
         id = json.id,
         name = json.name,
         image = json.image?.medium,
-        description = json.summary
+        description = json.summary,
+        averageRuntime = json.averageRuntime,
+        genres = json.genres,
+        status = json.status,
+        rating = json.rating?.average,
+        favorite = false
     )
 }
