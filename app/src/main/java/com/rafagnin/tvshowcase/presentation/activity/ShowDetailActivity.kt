@@ -50,6 +50,7 @@ class ShowDetailActivity : AppCompatActivity() {
     }
 
     private fun render(state: ShowDetailState) {
+        binding.content.run { if (state is Loaded) show() else gone() }
         binding.loading.run { if (state is Loading) show() else gone() }
         binding.error.root.run { if (state is Error) show() else gone() }
 
