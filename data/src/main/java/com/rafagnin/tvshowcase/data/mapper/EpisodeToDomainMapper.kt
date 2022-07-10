@@ -13,12 +13,14 @@ class EpisodeToDomainMapper @Inject constructor(
     fun map(json: EpisodeJson) = EpisodeModel(
         id = json.id,
         name = json.name,
+        description = json.summary,
         image = json.image?.medium,
         season = json.season,
         episode = json.number,
         airdate = json.airdate,
         hourAirdate = json.airstamp?.let { getHourAirDate(it) },
-        show = json.embedded?.show?.let { showToDomainMapper.map(it) }
+        show = json.embedded?.show?.let { showToDomainMapper.map(it) },
+        runtime = json.runtime
     )
 
     private fun getHourAirDate(date: String): String {
