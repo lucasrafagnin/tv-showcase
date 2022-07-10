@@ -1,8 +1,12 @@
 package com.rafagnin.tvshowcase.presentation.activity
 
+import android.app.SearchManager
+import android.content.ComponentName
+import android.content.Context
 import android.os.Bundle
 import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
@@ -31,7 +35,17 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.toolbar_menu, menu)
-        return true
+        val searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
+        (menu.findItem(R.id.search).actionView as SearchView).setSearchableInfo(
+            searchManager.getSearchableInfo(
+                ComponentName(
+                    this,
+                    SearchActivity::class.java
+                )
+            )
+        )
+
+        return super.onCreateOptionsMenu(menu)
     }
 
     private fun setNavController() {
