@@ -10,4 +10,6 @@
     <color name="blue_dark">#191E25</color>
 
     <color name="status_bar">#18202A</color>
+
+    <color name="ic_launcher_background">#18212C</color>
 </resources>
