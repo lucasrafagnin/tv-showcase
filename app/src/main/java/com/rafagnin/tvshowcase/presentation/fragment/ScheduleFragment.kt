@@ -71,4 +71,8 @@ class ScheduleFragment : Fragment(), ScheduleAdapter.AdapterCallback {
             viewModel.actionFlow.emit(action)
         }
     }
+
+    companion object {
+        const val SHORTCUT = "com.rafagnin.tvshowcase.schedule"
+    }
 }

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    tools:ignore="UnusedAttribute">
+    <shortcut
+        android:enabled="true"
+        android:shortcutId="home"
+        android:icon="@drawable/ic_shortcut_home"
+        android:shortcutLongLabel="@string/tab_home_title"
+        android:shortcutShortLabel="@string/tab_home_title">
+        <intent
+            android:action="com.rafagnin.tvshowcase.home"
+            android:targetClass="com.rafagnin.tvshowcase.presentation.activity.MainActivity"
+            android:targetPackage="com.rafagnin.tvshowcase"/>
+    </shortcut>
+    <shortcut
+        android:enabled="true"
+        android:shortcutId="schedule"
+        android:icon="@drawable/ic_shortcut_schedule"
+        android:shortcutLongLabel="@string/tab_schedule_title"
+        android:shortcutShortLabel="@string/tab_schedule_title">
+        <intent
+            android:action="com.rafagnin.tvshowcase.schedule"
+            android:targetClass="com.rafagnin.tvshowcase.presentation.activity.MainActivity"
+            android:targetPackage="com.rafagnin.tvshowcase"/>
+    </shortcut>
+    <shortcut
+        android:enabled="true"
+        android:shortcutId="favorites"
+        android:icon="@drawable/ic_shortcut_favorites"
+        android:shortcutLongLabel="@string/tab_favorites_title"
+        android:shortcutShortLabel="@string/tab_favorites_title">
+        <intent
+            android:action="com.rafagnin.tvshowcase.favorites"
+            android:targetClass="com.rafagnin.tvshowcase.presentation.activity.MainActivity"
+            android:targetPackage="com.rafagnin.tvshowcase"/>
+    </shortcut>
+</shortcuts>
