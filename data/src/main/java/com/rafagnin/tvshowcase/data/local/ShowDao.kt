@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface ShowDao {
 
-    @Query("SELECT * FROM show")
+    @Query("SELECT * FROM show ORDER BY show.name")
     fun getAll(): Flow<List<LocalShowModel>>
 
     @Insert
