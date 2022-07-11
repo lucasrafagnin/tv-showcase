@@ -18,7 +18,7 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
-        buildConfigField("String", "API_URL", "https://api.tvmaze.com/")
+        buildConfigField("String", "API_URL", "\"https://api.tvmaze.com/\"")
     }
 
     buildTypes {
