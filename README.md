@@ -1,4 +1,5 @@
 
+<p align="center"><img src="assets/img_app.png" width="80" /></p>
 <h1 align="center">TV Showcase</h1></br>
 
 <p align="center">  
