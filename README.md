@@ -4,10 +4,12 @@
 
 <p align="center">  
 A TV Showcase 🍿 Android App using Jetpack libraries and MVVM architecture. Data provided by TVMaze API.<br>
-App running: https://www.youtube.com/watch?v=hSYgi45N5zY
 </p>
 <br>
 
+## Release 🚀
+- Download [here](https://github.com/lucasrafagnin/tv-showcase/releases/tag/v1.0)
+- See how the app looks like 📹 [here](https://www.youtube.com/watch?v=hSYgi45N5zY)
 
 ## Tech Stack 🛠
 - Minimum SDK API level: 21
