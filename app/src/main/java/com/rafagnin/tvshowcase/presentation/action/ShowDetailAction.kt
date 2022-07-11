@@ -5,7 +5,7 @@ import com.rafagnin.tvshowcase.domain.model.ShowDetailModel
 sealed class ShowDetailAction {
     data class Retry(
         val id: Long
-    ): ShowDetailAction()
+    ) : ShowDetailAction()
     data class Favorite(
         val model: ShowDetailModel
     ) : ShowDetailAction()

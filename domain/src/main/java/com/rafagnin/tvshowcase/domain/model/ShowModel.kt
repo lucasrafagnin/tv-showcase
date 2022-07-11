@@ -6,4 +6,4 @@ data class ShowModel(
     val id: Long,
     val name: String?,
     val image: String?,
-): Serializable
+) : Serializable

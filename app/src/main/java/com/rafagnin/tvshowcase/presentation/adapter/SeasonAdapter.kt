@@ -6,9 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseExpandableListAdapter
-import android.widget.ImageView
 import android.widget.TextView
-import coil.load
 import com.rafagnin.tvshowcase.R
 import com.rafagnin.tvshowcase.domain.model.EpisodeModel
 

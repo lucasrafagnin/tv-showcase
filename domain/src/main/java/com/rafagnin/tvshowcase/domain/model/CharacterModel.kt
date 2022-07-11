@@ -9,4 +9,4 @@ data class CharacterModel(
     val country: String?,
     val birthday: String?,
     val site: String?
-): Serializable
+) : Serializable

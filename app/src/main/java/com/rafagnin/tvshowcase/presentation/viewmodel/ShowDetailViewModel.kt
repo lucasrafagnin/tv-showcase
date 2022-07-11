@@ -10,9 +10,9 @@ import com.rafagnin.tvshowcase.presentation.action.ShowDetailAction
 import com.rafagnin.tvshowcase.presentation.action.ShowDetailAction.Favorite
 import com.rafagnin.tvshowcase.presentation.action.ShowDetailAction.Retry
 import com.rafagnin.tvshowcase.presentation.state.ShowDetailState
+import com.rafagnin.tvshowcase.presentation.state.ShowDetailState.Error
 import com.rafagnin.tvshowcase.presentation.state.ShowDetailState.Loaded
 import com.rafagnin.tvshowcase.presentation.state.ShowDetailState.Loading
-import com.rafagnin.tvshowcase.presentation.state.ShowDetailState.Error
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableSharedFlow

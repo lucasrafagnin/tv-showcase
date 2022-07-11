@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -22,7 +21,9 @@ import com.rafagnin.tvshowcase.ext.show
 import com.rafagnin.tvshowcase.presentation.action.ShowDetailAction
 import com.rafagnin.tvshowcase.presentation.adapter.SeasonAdapter
 import com.rafagnin.tvshowcase.presentation.state.ShowDetailState
-import com.rafagnin.tvshowcase.presentation.state.ShowDetailState.*
+import com.rafagnin.tvshowcase.presentation.state.ShowDetailState.Error
+import com.rafagnin.tvshowcase.presentation.state.ShowDetailState.Loaded
+import com.rafagnin.tvshowcase.presentation.state.ShowDetailState.Loading
 import com.rafagnin.tvshowcase.presentation.viewmodel.ShowDetailViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
