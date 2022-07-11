@@ -12,23 +12,4 @@
         <item name="android:statusBarColor">@color/status_bar</item>
         <item name="android:windowBackground">@color/gray_light</item>
     </style>
-
-    <style name="ItemSchedule">
-        <item name="android:background">@color/white</item>
-    </style>
-
-    <style name="BottomNavigationStyle">
-        <item name="android:background">@color/white</item>
-    </style>
-
-    <style name="ToolbarStyle">
-        <item name="android:background">@color/white</item>
-        <item name="titleTextAppearance">@style/ToolbarTitle</item>
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-    </style>
-
-    <style name="ToolbarTitle" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
-        <item name="android:textColor">@color/blue_dark</item>
-    </style>
 </resources>
