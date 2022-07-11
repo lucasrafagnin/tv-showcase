@@ -17,7 +17,9 @@ import com.rafagnin.tvshowcase.presentation.action.ScheduleAction.Retry
 import com.rafagnin.tvshowcase.presentation.activity.EpisodeActivity
 import com.rafagnin.tvshowcase.presentation.adapter.ScheduleAdapter
 import com.rafagnin.tvshowcase.presentation.state.ScheduleState
-import com.rafagnin.tvshowcase.presentation.state.ScheduleState.*
+import com.rafagnin.tvshowcase.presentation.state.ScheduleState.EpisodesLoaded
+import com.rafagnin.tvshowcase.presentation.state.ScheduleState.Error
+import com.rafagnin.tvshowcase.presentation.state.ScheduleState.Loading
 import com.rafagnin.tvshowcase.presentation.viewmodel.ScheduleViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch

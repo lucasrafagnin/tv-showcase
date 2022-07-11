@@ -57,6 +57,11 @@ class ShowDetailActivity : AppCompatActivity() {
         setToolbar()
     }
 
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
+    }
+
     private fun render(state: ShowDetailState) {
         binding.content.run { if (state is Loaded) show() else gone() }
         binding.loading.run { if (state is Loading) show() else gone() }

@@ -49,6 +49,11 @@ class SearchActivity : AppCompatActivity(), ShowsAdapter.AdapterCallback {
 
     override fun onShowClick(id: Long) = openDetailScreen(id)
 
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
+    }
+
     private fun setupTopBar() {
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
