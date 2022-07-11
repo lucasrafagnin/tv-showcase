@@ -28,6 +28,7 @@ A TV Showcase 🍿 Android App using Jetpack libraries and MVVM architecture. Da
 - [Coil-kt](https://coil-kt.github.io/coil/) - An image loading library for Android backed by Kotlin Coroutines.
 - [Gradle Kotlin DSL](https://docs.gradle.org/current/userguide/kotlin_dsl.html) - For writing Gradle build scripts using Kotlin.
 - [Ktlint 💅](https://github.com/pinterest/ktlint) - Kotlin linter
+- [JUnit](https://developer.android.com/jetpack/androidx/releases/test?hl=pt-br), [Mockito](https://site.mockito.org/) and [Mockk](https://mockk.io/) for unit tests
 
 ## Features
 - [X] List all of the series contained in the API used by the paging scheme provided by the API.
