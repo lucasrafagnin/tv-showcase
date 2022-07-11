@@ -8,7 +8,7 @@ class RemoteDataSource @Inject constructor(
 ) {
     suspend fun search(query: String) = api.search(query)
 
-    suspend fun getShows() = api.getShows()
+    suspend fun getShows(page: Int) = api.getShows(page)
 
     suspend fun getShowDetail(id: Long) = api.getShowDetail(id)
 

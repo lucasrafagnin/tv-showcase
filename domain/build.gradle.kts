@@ -15,6 +15,7 @@ dependencies {
     implementation(libs.bundles.moshi)
 
     implementation(libs.hilt)
+    implementation(libs.paging)
 
     kapt(libs.hiltCompiler)
     kapt(libs.roomCompiler)

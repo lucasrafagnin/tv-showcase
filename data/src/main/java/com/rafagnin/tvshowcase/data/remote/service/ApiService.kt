@@ -15,7 +15,9 @@ interface ApiService {
     ): List<SearchJson>
 
     @GET("shows")
-    suspend fun getShows(): List<ShowJson>
+    suspend fun getShows(
+        @Query("page") page: Int
+    ): List<ShowJson>
 
     @GET("shows/{id}?embed[]=episodes&embed[]=cast")
     suspend fun getShowDetail(

@@ -10,7 +10,7 @@ interface ShowRepository {
     fun favoriteShow(model: ShowDetailModel, toFavorite: Boolean)
     fun isShowFavorite(id: Long): Boolean
     suspend fun searchShows(query: String): List<ShowModel>
-    suspend fun getShows(): List<ShowModel>
+    suspend fun getShows(page: Int): List<ShowModel>
     suspend fun getShowDetail(id: Long): ShowDetailModel
     suspend fun getSchedule(date: String): List<EpisodeModel>
 }

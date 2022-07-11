@@ -62,7 +62,7 @@ class FavoritesFragment : Fragment(), ShowsAdapter.AdapterCallback {
         binding.errorState.root.run { if (state is Error) show() else gone() }
         binding.emptyState.root.run { if (state is Empty) show() else gone() }
 
-        if (state is ShowsLoaded) adapter.update(state.items)
+        //if (state is ShowsLoaded) adapter.update(state.items)
     }
 
     private fun openDetailScreen(id: Long) {

@@ -1,8 +1,8 @@
 package com.rafagnin.tvshowcase.presentation.adapter
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.rafagnin.tvshowcase.databinding.ItemShowBinding
@@ -12,9 +12,7 @@ import javax.inject.Inject
 
 class ShowsAdapter @Inject constructor(
     private val callback: AdapterCallback
-) : RecyclerView.Adapter<ShowViewHolder>() {
-
-    private val list: MutableList<ShowModel> = mutableListOf()
+): PagingDataAdapter<ShowModel, ShowViewHolder>(GameDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ShowViewHolder {
         val view = ItemShowBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -22,16 +20,7 @@ class ShowsAdapter @Inject constructor(
     }
 
     override fun onBindViewHolder(holder: ShowViewHolder, position: Int) {
-        holder.bind(list[position], callback)
-    }
-
-    override fun getItemCount() = list.size
-
-    @SuppressLint("NotifyDataSetChanged")
-    fun update(items: List<ShowModel>?) {
-        this.list.clear()
-        this.list.addAll(items.orEmpty())
-        notifyDataSetChanged()
+        getItem(position)?.let { holder.bind(it, callback) }
     }
 
     class ShowViewHolder(private val view: ItemShowBinding) : RecyclerView.ViewHolder(view.root) {
