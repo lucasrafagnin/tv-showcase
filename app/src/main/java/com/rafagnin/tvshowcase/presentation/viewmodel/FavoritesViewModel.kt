@@ -6,7 +6,10 @@ import com.rafagnin.tvshowcase.domain.Resource
 import com.rafagnin.tvshowcase.domain.usecase.GetFavorites
 import com.rafagnin.tvshowcase.presentation.action.FavoritesAction
 import com.rafagnin.tvshowcase.presentation.state.FavoritesState
-import com.rafagnin.tvshowcase.presentation.state.FavoritesState.*
+import com.rafagnin.tvshowcase.presentation.state.FavoritesState.Empty
+import com.rafagnin.tvshowcase.presentation.state.FavoritesState.Error
+import com.rafagnin.tvshowcase.presentation.state.FavoritesState.Loading
+import com.rafagnin.tvshowcase.presentation.state.FavoritesState.ShowsLoaded
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableSharedFlow

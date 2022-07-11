@@ -5,7 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.rafagnin.tvshowcase.domain.usecase.GetAllShows
 import com.rafagnin.tvshowcase.presentation.action.HomeAction
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 

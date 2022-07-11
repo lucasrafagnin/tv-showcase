@@ -6,7 +6,9 @@ import com.rafagnin.tvshowcase.domain.Resource
 import com.rafagnin.tvshowcase.domain.usecase.GetSchedule
 import com.rafagnin.tvshowcase.presentation.action.ScheduleAction
 import com.rafagnin.tvshowcase.presentation.state.ScheduleState
-import com.rafagnin.tvshowcase.presentation.state.ScheduleState.*
+import com.rafagnin.tvshowcase.presentation.state.ScheduleState.EpisodesLoaded
+import com.rafagnin.tvshowcase.presentation.state.ScheduleState.Error
+import com.rafagnin.tvshowcase.presentation.state.ScheduleState.Loading
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
