@@ -4,6 +4,8 @@ import com.rafagnin.tvshowcase.data.local.LocalDataSource
 import com.rafagnin.tvshowcase.data.mapper.EpisodeToDomainMapper
 import com.rafagnin.tvshowcase.data.mapper.ShowToDomainMapper
 import com.rafagnin.tvshowcase.data.remote.RemoteDataSource
+import com.rafagnin.tvshowcase.data.remote.RemoteDataSourceImpl
+import com.rafagnin.tvshowcase.data.remote.service.ApiService
 import com.rafagnin.tvshowcase.data.repository.ShowRepositoryImpl
 import com.rafagnin.tvshowcase.domain.data.ShowRepository
 import dagger.Module
@@ -14,6 +16,11 @@ import dagger.hilt.components.SingletonComponent
 @Module
 @InstallIn(SingletonComponent::class)
 class RepositoryModule {
+
+    @Provides
+    fun provideRemoteDataSource(
+        apiService: ApiService
+    ): RemoteDataSource = RemoteDataSourceImpl(apiService)
 
     @Provides
     fun provideShowRepository(
