@@ -52,4 +52,13 @@ A TV Showcase 🍿 Android App using Jetpack libraries and MVVM architecture. Da
 - [X] After clicking on a person, the application should show the details of that person, such as:
     - [X] Name
     - [X] Image
-    - [X] Series they have participated in, with a link to the series details.
+    - [ ] Series they have participated in, with a link to the series details.
+
+## Bonus
+- [X] Episodes schedule of the day
+- [X] Show rating
+- [X] Shortcuts to home, schedule and favorites
+- [X] Adaptive icon
+- [X] Day/Night theme for API level 29+
+- [X] Support to PT language
+- [X] Search by voice
