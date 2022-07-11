@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -11,7 +10,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" >
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
@@ -102,11 +101,8 @@
 
             <TextView
                 android:id="@+id/status"
+                style="@style/TextTitle"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:drawablePadding="4dp"
-                android:ellipsize="end"
-                android:maxLines="1"
                 app:drawableStartCompat="@drawable/ic_label"
                 app:drawableTint="@color/red"
                 app:layout_constraintEnd_toEndOf="@id/guide_end"
@@ -115,12 +111,9 @@
 
             <TextView
                 android:id="@+id/genres"
+                style="@style/TextTitle"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:drawablePadding="4dp"
-                android:ellipsize="end"
-                android:maxLines="1"
                 app:drawableStartCompat="@drawable/ic_genre"
                 app:drawableTint="@color/red"
                 app:layout_constraintEnd_toEndOf="@id/guide_end"
@@ -129,12 +122,9 @@
 
             <TextView
                 android:id="@+id/rate"
+                style="@style/TextTitle"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:drawablePadding="4dp"
-                android:ellipsize="end"
-                android:maxLines="1"
                 app:drawableStartCompat="@drawable/ic_rate"
                 app:drawableTint="@color/red"
                 app:layout_constraintEnd_toEndOf="@id/guide_end"
@@ -143,12 +133,9 @@
 
             <TextView
                 android:id="@+id/average_runtime"
+                style="@style/TextTitle"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:drawablePadding="4dp"
-                android:ellipsize="end"
-                android:maxLines="1"
                 app:drawableStartCompat="@drawable/ic_timer"
                 app:drawableTint="@color/red"
                 app:layout_constraintEnd_toEndOf="@id/guide_end"
@@ -157,12 +144,9 @@
 
             <TextView
                 android:id="@+id/network"
+                style="@style/TextTitle"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:drawablePadding="4dp"
-                android:ellipsize="end"
-                android:maxLines="1"
                 app:drawableStartCompat="@drawable/ic_tv"
                 app:drawableTint="@color/red"
                 app:layout_constraintEnd_toEndOf="@id/guide_end"
@@ -171,12 +155,9 @@
 
             <TextView
                 android:id="@+id/time"
+                style="@style/TextTitle"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:drawablePadding="4dp"
-                android:ellipsize="end"
-                android:maxLines="1"
                 app:drawableStartCompat="@drawable/ic_time"
                 app:drawableTint="@color/red"
                 app:layout_constraintEnd_toEndOf="@id/guide_end"
