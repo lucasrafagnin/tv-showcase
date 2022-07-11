@@ -56,12 +56,15 @@ class HomeFragment : Fragment(), ShowsAdapter.AdapterCallback {
 
     override fun onShowClick(id: Long) = openDetailScreen(id)
 
-    private fun render(state: HomeState) {
+    private suspend fun render(state: HomeState) {
         binding.list.run { if (state is ShowsLoaded) show() else gone() }
         binding.loading.run { if (state is Loading) show() else gone() }
         binding.errorState.root.run { if (state is Error) show() else gone() }
 
-        if (state is ShowsLoaded) adapter.update(state.items)
+        if (state is ShowsLoaded) {
+            adapter.submitData(state.items)
+            binding.list.show()
+        }
     }
 
     private fun openDetailScreen(id: Long) {

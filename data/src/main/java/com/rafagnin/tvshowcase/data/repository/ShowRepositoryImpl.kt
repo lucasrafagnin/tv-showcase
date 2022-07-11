@@ -29,8 +29,8 @@ class ShowRepositoryImpl @Inject constructor(
 
     override fun isShowFavorite(id: Long) = localDataSource.exist(id)
 
-    override suspend fun getShows(): List<ShowModel> {
-        return remoteDataSource.getShows().map { showToDomainMapper.map(it) }
+    override suspend fun getShows(page: Int): List<ShowModel> {
+        return remoteDataSource.getShows(page).map { showToDomainMapper.map(it) }
     }
 
     override suspend fun searchShows(query: String): List<ShowModel> {
