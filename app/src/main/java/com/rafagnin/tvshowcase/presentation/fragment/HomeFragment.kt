@@ -69,4 +69,8 @@ class HomeFragment : Fragment(), ShowsAdapter.AdapterCallback {
         intent.putExtra(ShowDetailActivity.ID_EXTRA, id)
         startActivity(intent)
     }
+
+    companion object {
+        const val SHORTCUT = "com.rafagnin.tvshowcase.home"
+    }
 }
