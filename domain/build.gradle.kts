@@ -20,7 +20,6 @@ dependencies {
     kapt(libs.hiltCompiler)
     kapt(libs.roomCompiler)
     testImplementation(libs.junit)
-
-    androidTestImplementation(libs.espresso)
-    androidTestImplementation(libs.junit)
+    testImplementation(libs.mockito)
+    testImplementation(libs.mockitoKotlin)
 }
