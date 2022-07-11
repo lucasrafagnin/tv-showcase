@@ -1,0 +1,34 @@
+<resources>
+    <!-- Tabs -->
+    <string name="tab_home_title">Inicial</string>
+    <string name="tab_schedule_title">Programação</string>
+    <string name="tab_favorites_title">Favoritos</string>
+
+    <!-- Schedule -->
+    <string name="schedule_season_prefix">T%1$s</string>
+    <string name="schedule_season_fullprefix">Temporada %1$s</string>
+    <string name="schedule_episode_prefix">E%1$s</string>
+    <string name="schedule_episode_fullprefix">Episódio %1$s</string>
+    <string name="schedule_separator">|</string>
+
+    <!-- Search -->
+    <string name="search_title">Busca</string>
+    <string name="search_hint">Buscar uma série</string>
+    <string name="search_result">Buscar por: %1$s</string>
+
+    <!-- Show detail -->
+    <string name="show_description">Descrição</string>
+    <string name="show_characters">Elenco</string>
+
+    <!-- Error state -->
+    <string name="error_title">Aconteceu algo de errado</string>
+    <string name="error_description">Um erro ocorreu, por favor tente novamente mais tarde</string>
+    <string name="error_retry">Tentar novamente</string>
+
+    <!-- Empty state -->
+    <string name="empty_title">Salve suas séries favoritas</string>
+    <string name="empty_description">Sua lista de favoritas vai aparecer aqui</string>
+
+    <!-- Common -->
+    <string name="common_minutes">%1$d min</string>
+</resources>
