@@ -61,7 +61,7 @@ class SearchActivity : AppCompatActivity(), ShowsAdapter.AdapterCallback {
         binding.loading.run { if (state is Loading) show() else gone() }
         binding.errorState.root.run { if (state is Error) show() else gone() }
 
-        //if (state is ShowsLoaded) adapter.update(state.items)
+        if (state is ShowsLoaded) adapter.update(state.items)
     }
 
     private fun handleIntent(intent: Intent) {

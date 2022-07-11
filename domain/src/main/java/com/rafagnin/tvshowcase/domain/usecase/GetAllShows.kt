@@ -14,13 +14,11 @@ class GetAllShows @Inject constructor(
     private val repository: ShowRepository,
 ) {
 
-    operator fun invoke(): Flow<PagingData<ShowModel>> {
-        return Pager(
-            config = PagingConfig(
-                pageSize = NETWORK_PAGE_SIZE,
-                enablePlaceholders = false
-            ),
-            pagingSourceFactory = { ShowPagingSource(repository) }
-        ).flow
-    }
+    operator fun invoke(): Flow<PagingData<ShowModel>> = Pager(
+        config = PagingConfig(
+            pageSize = NETWORK_PAGE_SIZE,
+            enablePlaceholders = false
+        ),
+        pagingSourceFactory = { ShowPagingSource(repository) }
+    ).flow
 }
