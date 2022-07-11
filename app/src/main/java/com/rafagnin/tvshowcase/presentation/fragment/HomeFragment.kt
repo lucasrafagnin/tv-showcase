@@ -16,7 +16,6 @@ import androidx.paging.cachedIn
 import com.rafagnin.tvshowcase.databinding.FragmentHomeBinding
 import com.rafagnin.tvshowcase.ext.gone
 import com.rafagnin.tvshowcase.ext.show
-import com.rafagnin.tvshowcase.presentation.action.HomeAction
 import com.rafagnin.tvshowcase.presentation.activity.ShowDetailActivity
 import com.rafagnin.tvshowcase.presentation.adapter.ShowsPagingAdapter
 import com.rafagnin.tvshowcase.presentation.viewmodel.HomeViewModel

@@ -5,7 +5,7 @@ import javax.inject.Inject
 
 class RemoteDataSourceImpl @Inject constructor(
     private val api: ApiService
-): RemoteDataSource {
+) : RemoteDataSource {
     override suspend fun search(query: String) = api.search(query)
 
     override suspend fun getShows(page: Int) = api.getShows(page)
