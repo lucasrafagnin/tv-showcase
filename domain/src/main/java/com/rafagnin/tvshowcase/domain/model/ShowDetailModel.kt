@@ -11,5 +11,7 @@ data class ShowDetailModel(
     val status: String?,
     val network: String?,
     val characters: List<CharacterModel>?,
+    val time: String?,
+    val seasons: Map<String, List<EpisodeModel>>?,
     val favorite: Boolean
 )

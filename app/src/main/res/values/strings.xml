@@ -8,7 +8,9 @@
 
     <!-- Schedule -->
     <string name="schedule_season_prefix">S%1$s</string>
+    <string name="schedule_season_fullprefix">Season %1$s</string>
     <string name="schedule_episode_prefix">E%1$s</string>
+    <string name="schedule_episode_fullprefix">Episode %1$s</string>
     <string name="schedule_separator">|</string>
 
     <!-- Search -->

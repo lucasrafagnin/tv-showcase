@@ -1,16 +1,16 @@
 package com.rafagnin.tvshowcase.data.mapper
 
 import com.rafagnin.tvshowcase.data.ext.parseHtml
-import com.rafagnin.tvshowcase.data.model.CastJson
 import com.rafagnin.tvshowcase.data.model.LocalShowModel
+import com.rafagnin.tvshowcase.data.model.ScheduleJson
 import com.rafagnin.tvshowcase.data.model.ShowJson
-import com.rafagnin.tvshowcase.domain.model.CharacterModel
 import com.rafagnin.tvshowcase.domain.model.ShowDetailModel
 import com.rafagnin.tvshowcase.domain.model.ShowModel
 import javax.inject.Inject
 
 class ShowToDomainMapper @Inject constructor(
-    private val characterToDomainMapper: CharacterToDomainMapper
+    private val characterToDomainMapper: CharacterToDomainMapper,
+    private val episodeToDomainMapper: EpisodeToDomainMapper
 ) {
 
     fun map(json: ShowJson) = ShowModel(
@@ -42,6 +42,14 @@ class ShowToDomainMapper @Inject constructor(
         rating = json.rating?.average,
         network = json.webChannel?.name ?: json.network?.name,
         characters = json.embedded?.cast?.map { characterToDomainMapper.map(it) },
+        time = parseSchedule(json.schedule),
+        seasons = json.embedded?.episodes?.map { episodeToDomainMapper.map(it) }
+            ?.groupBy { it.season!! },
         favorite = false
     )
+
+    private fun parseSchedule(schedule: ScheduleJson?) = schedule?.let {
+        val time = if (!it.time.isNullOrEmpty()) it.time.plus("h, ") else ""
+        time.plus(it.days?.joinToString(", "))
+    }
 }

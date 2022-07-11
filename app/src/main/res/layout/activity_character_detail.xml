@@ -36,8 +36,8 @@
 
     <ImageView
         android:id="@+id/poster"
-        android:layout_width="72dp"
-        android:layout_height="72dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:layout_marginTop="16dp"
         android:background="@color/blue"
         android:importantForAccessibility="no"
@@ -64,7 +64,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:drawablePadding="4dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="6dp"
         android:ellipsize="end"
         android:maxLines="1"
         app:drawableStartCompat="@drawable/ic_birthday"
@@ -78,7 +78,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:drawablePadding="4dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="6dp"
         android:ellipsize="end"
         android:maxLines="1"
         app:drawableStartCompat="@drawable/ic_person"
