@@ -1,16 +1,12 @@
 package com.rafagnin.tvshowcase.data.remote
 
-import com.rafagnin.tvshowcase.data.remote.service.ApiService
-import javax.inject.Inject
+import com.rafagnin.tvshowcase.data.model.EpisodeJson
+import com.rafagnin.tvshowcase.data.model.SearchJson
+import com.rafagnin.tvshowcase.data.model.ShowJson
 
-class RemoteDataSource @Inject constructor(
-    private val api: ApiService
-) {
-    suspend fun search(query: String) = api.search(query)
-
-    suspend fun getShows(page: Int) = api.getShows(page)
-
-    suspend fun getShowDetail(id: Long) = api.getShowDetail(id)
-
-    suspend fun getSchedule(date: String) = api.getSchedule(date)
+interface RemoteDataSource {
+    suspend fun search(query: String): List<SearchJson>
+    suspend fun getShows(page: Int): List<ShowJson>
+    suspend fun getShowDetail(id: Long): ShowJson
+    suspend fun getSchedule(date: String): List<EpisodeJson>
 }
