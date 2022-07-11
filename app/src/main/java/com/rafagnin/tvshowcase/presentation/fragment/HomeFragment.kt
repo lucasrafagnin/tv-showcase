@@ -46,14 +46,9 @@ class HomeFragment : Fragment(), ShowsPagingAdapter.AdapterCallback {
         viewModel = ViewModelProvider(requireActivity())[HomeViewModel::class.java]
         adapter = ShowsPagingAdapter(this)
         binding.list.adapter = adapter
+        binding.errorState.retry.setOnClickListener { adapter.retry() }
 
         render()
-
-        binding.errorState.retry.setOnClickListener {
-            lifecycleScope.launch {
-                viewModel.actionFlow.emit(HomeAction.Retry)
-            }
-        }
     }
 
     override fun onShowClick(id: Long) = openDetailScreen(id)
