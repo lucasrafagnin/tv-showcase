@@ -23,7 +23,7 @@ class ShowPagingSource(
 
         LoadResult.Page(
             data = shows,
-            prevKey = if (pageIndex == STARTING_PAGE_INDEX) null else pageIndex,
+            prevKey = null,
             nextKey = nextKey
         )
     } catch (e: Exception) {
