@@ -12,7 +12,7 @@ import javax.inject.Inject
 
 class ShowsPagingAdapter @Inject constructor(
     private val callback: AdapterCallback
-): PagingDataAdapter<ShowModel, ShowPageViewHolder>(GameDiffCallback()) {
+) : PagingDataAdapter<ShowModel, ShowPageViewHolder>(ShowDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ShowPageViewHolder {
         val view = ItemShowBinding.inflate(LayoutInflater.from(parent.context), parent, false)

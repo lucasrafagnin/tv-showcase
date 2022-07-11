@@ -14,4 +14,4 @@ data class EpisodeModel(
     val runtime: Int?,
     val show: ShowModel?,
     val site: String?
-): Serializable
+) : Serializable

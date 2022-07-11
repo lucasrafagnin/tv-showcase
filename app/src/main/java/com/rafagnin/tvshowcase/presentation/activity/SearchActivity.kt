@@ -13,9 +13,9 @@ import com.rafagnin.tvshowcase.ext.show
 import com.rafagnin.tvshowcase.presentation.action.SearchAction
 import com.rafagnin.tvshowcase.presentation.adapter.ShowsAdapter
 import com.rafagnin.tvshowcase.presentation.state.SearchState
+import com.rafagnin.tvshowcase.presentation.state.SearchState.Error
 import com.rafagnin.tvshowcase.presentation.state.SearchState.Loading
 import com.rafagnin.tvshowcase.presentation.state.SearchState.ShowsLoaded
-import com.rafagnin.tvshowcase.presentation.state.SearchState.Error
 import com.rafagnin.tvshowcase.presentation.viewmodel.SearchViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch

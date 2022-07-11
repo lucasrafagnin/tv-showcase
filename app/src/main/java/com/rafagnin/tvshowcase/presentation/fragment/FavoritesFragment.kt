@@ -15,7 +15,10 @@ import com.rafagnin.tvshowcase.presentation.action.FavoritesAction.Retry
 import com.rafagnin.tvshowcase.presentation.activity.ShowDetailActivity
 import com.rafagnin.tvshowcase.presentation.adapter.ShowsAdapter
 import com.rafagnin.tvshowcase.presentation.state.FavoritesState
-import com.rafagnin.tvshowcase.presentation.state.FavoritesState.*
+import com.rafagnin.tvshowcase.presentation.state.FavoritesState.Empty
+import com.rafagnin.tvshowcase.presentation.state.FavoritesState.Error
+import com.rafagnin.tvshowcase.presentation.state.FavoritesState.Loading
+import com.rafagnin.tvshowcase.presentation.state.FavoritesState.ShowsLoaded
 import com.rafagnin.tvshowcase.presentation.viewmodel.FavoritesViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch

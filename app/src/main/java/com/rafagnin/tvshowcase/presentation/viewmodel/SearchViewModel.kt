@@ -6,8 +6,8 @@ import com.rafagnin.tvshowcase.domain.Resource
 import com.rafagnin.tvshowcase.domain.usecase.SearchShow
 import com.rafagnin.tvshowcase.presentation.action.SearchAction
 import com.rafagnin.tvshowcase.presentation.state.SearchState
-import com.rafagnin.tvshowcase.presentation.state.SearchState.Loading
 import com.rafagnin.tvshowcase.presentation.state.SearchState.Error
+import com.rafagnin.tvshowcase.presentation.state.SearchState.Loading
 import com.rafagnin.tvshowcase.presentation.state.SearchState.ShowsLoaded
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
