@@ -1,5 +1,6 @@
 package com.rafagnin.tvshowcase.di
 
+import com.rafagnin.tvshowcase.BuildConfig
 import com.rafagnin.tvshowcase.data.remote.service.ApiService
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -7,7 +8,6 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
@@ -19,23 +19,7 @@ class NetworkModule {
 
     @Singleton
     @Provides
-    fun provideInterceptor() = Interceptor { chain ->
-        val original = chain.request()
-
-        val newRequest = original
-            .newBuilder()
-            .addHeader("Accept-Encoding", "identity")
-            .build()
-        chain.proceed(newRequest)
-    }
-
-    @Singleton
-    @Provides
-    fun provideOkHttpClient(
-        interceptor: Interceptor
-    ) = OkHttpClient.Builder()
-        .addInterceptor(interceptor)
-        .build()
+    fun provideOkHttpClient() = OkHttpClient.Builder().build()
 
     @Singleton
     @Provides
@@ -52,7 +36,7 @@ class NetworkModule {
         moshiConverterFactory: MoshiConverterFactory
     ) = Retrofit.Builder()
         .client(okHttpClient)
-        .baseUrl("https://api.tvmaze.com/")
+        .baseUrl(BuildConfig.API_URL)
         .addConverterFactory(moshiConverterFactory)
         .build()
 
