@@ -27,7 +27,7 @@ A TV Showcase 🍿 Android App using Jetpack libraries and MVVM architecture. Da
 - [Navigation](https://developer.android.com/guide/navigation) - A library that helps navigation between fragments
 - [Coil-kt](https://coil-kt.github.io/coil/) - An image loading library for Android backed by Kotlin Coroutines.
 - [Gradle Kotlin DSL](https://docs.gradle.org/current/userguide/kotlin_dsl.html) - For writing Gradle build scripts using Kotlin.
-- [Ktlin 💅](https://github.com/pinterest/ktlint) - Kotlin linter
+- [Ktlint 💅](https://github.com/pinterest/ktlint) - Kotlin linter
 
 ## Features
 - [X] List all of the series contained in the API used by the paging scheme provided by the API.
@@ -60,6 +60,8 @@ A TV Showcase 🍿 Android App using Jetpack libraries and MVVM architecture. Da
     - [ ] Series they have participated in, with a link to the series details.
 
 ## Bonus
+- [X] Test coverage on Data module
+- [X] Test coverage on Domain module
 - [X] Episodes schedule of the day
 - [X] Show rating
 - [X] Shortcuts to home, schedule and favorites
