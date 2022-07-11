@@ -22,4 +22,5 @@ dependencies {
     testImplementation(libs.junit)
     testImplementation(libs.mockito)
     testImplementation(libs.mockitoKotlin)
+    testImplementation(libs.mockk)
 }
