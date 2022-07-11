@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -14,14 +15,14 @@ import coil.transform.RoundedCornersTransformation
 import com.rafagnin.tvshowcase.R
 import com.rafagnin.tvshowcase.databinding.ActivityShowDetailBinding
 import com.rafagnin.tvshowcase.domain.model.CharacterModel
+import com.rafagnin.tvshowcase.domain.model.EpisodeModel
 import com.rafagnin.tvshowcase.domain.model.ShowDetailModel
 import com.rafagnin.tvshowcase.ext.gone
 import com.rafagnin.tvshowcase.ext.show
 import com.rafagnin.tvshowcase.presentation.action.ShowDetailAction
+import com.rafagnin.tvshowcase.presentation.adapter.SeasonAdapter
 import com.rafagnin.tvshowcase.presentation.state.ShowDetailState
-import com.rafagnin.tvshowcase.presentation.state.ShowDetailState.Error
-import com.rafagnin.tvshowcase.presentation.state.ShowDetailState.Loaded
-import com.rafagnin.tvshowcase.presentation.state.ShowDetailState.Loading
+import com.rafagnin.tvshowcase.presentation.state.ShowDetailState.*
 import com.rafagnin.tvshowcase.presentation.viewmodel.ShowDetailViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -72,6 +73,7 @@ class ShowDetailActivity : AppCompatActivity() {
         binding.genres.text = it.genres
         binding.rate.text = it.rating.toString()
         binding.status.text = it.status
+        binding.time.text = it.time
         binding.network.text = it.network
         it.averageRuntime?.let {
             binding.averageRuntime.text = getString(R.string.common_minutes, it)
@@ -79,6 +81,7 @@ class ShowDetailActivity : AppCompatActivity() {
         }
         setDescription(show.description)
         setCast(show.characters)
+        setSeasons(show.seasons)
     }
 
     private fun setFavorite(show: ShowDetailModel) = with(binding.favorite) {
@@ -120,9 +123,27 @@ class ShowDetailActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
+    private fun openEpisode(episode: EpisodeModel) {
+        val intent = Intent(this, EpisodeActivity::class.java)
+        intent.putExtra(ID_EXTRA, episode)
+        startActivity(intent)
+    }
+
     private fun setToolbar() {
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
+    }
+
+    private fun setSeasons(seasons: Map<String, List<EpisodeModel>>?) = seasons?.run {
+        val expandableListTitle = ArrayList(seasons.keys)
+        val expandableListAdapter = SeasonAdapter(this@ShowDetailActivity, expandableListTitle, seasons)
+        binding.seasons.setAdapter(expandableListAdapter)
+
+        binding.seasons.setOnChildClickListener { _, _, groupPosition, childPosition, _ ->
+            val episode = seasons[expandableListTitle[groupPosition]]?.get(childPosition)
+            episode?.let { openEpisode(it) }
+            false
+        }
     }
 }

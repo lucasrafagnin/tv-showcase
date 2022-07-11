@@ -15,5 +15,6 @@ data class ShowJson(
     @Json(name = "image") val image: ImageJson?,
     @Json(name = "network") val network: NetworkJson?,
     @Json(name = "webChannel") val webChannel: NetworkJson?,
-    @Json(name = "rating") val rating: RatingJson?
+    @Json(name = "rating") val rating: RatingJson?,
+    @Json(name = "schedule") val schedule: ScheduleJson?,
 )
