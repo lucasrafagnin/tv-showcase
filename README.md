@@ -5,7 +5,8 @@
 <p align="center">  
 A TV Showcase 🍿 Android App using Jetpack libraries and MVVM architecture. Data provided by TVMaze API.<br>
 </p>
-<br>
+
+![Cover](https://github.com/lucasrafagnin/tv-showcase/blob/master/assets/cover.jpg)
 
 ## Release 🚀
 - Download [here](https://github.com/lucasrafagnin/tv-showcase/releases/tag/v1.0)
