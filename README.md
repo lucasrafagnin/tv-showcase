@@ -2,6 +2,10 @@
 <p align="center"><img src="assets/img_app.png" width="80" /></p>
 <h1 align="center">TV Showcase</h1></br>
 
+<p align="center">
+  <a href="https://www.codacy.com/gh/lucasrafagnin/tv-showcase/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=lucasrafagnin/tv-showcase&amp;utm_campaign=Badge_Grade"><img alt="Google" src="https://app.codacy.com/project/badge/Grade/b84ef180a6cd423fb94861a227db5927"/></a>
+</p>
+
 <p align="center">  
 A TV Showcase 🍿 Android App using Jetpack libraries and MVVM architecture. Data provided by TVMaze API.<br>
 </p>
