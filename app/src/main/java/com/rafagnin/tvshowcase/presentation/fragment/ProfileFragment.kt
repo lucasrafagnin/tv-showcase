@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
-import com.rafagnin.tvshowcase.databinding.FragmentFavoritesBinding
+import com.rafagnin.tvshowcase.databinding.FragmentProfileBinding
 import com.rafagnin.tvshowcase.ext.gone
 import com.rafagnin.tvshowcase.ext.show
 import com.rafagnin.tvshowcase.presentation.action.FavoritesAction.Retry
@@ -24,9 +24,9 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class FavoritesFragment : Fragment(), ShowsAdapter.AdapterCallback {
+class ProfileFragment : Fragment(), ShowsAdapter.AdapterCallback {
 
-    private lateinit var binding: FragmentFavoritesBinding
+    private lateinit var binding: FragmentProfileBinding
     private lateinit var viewModel: FavoritesViewModel
     private lateinit var adapter: ShowsAdapter
 
@@ -35,7 +35,7 @@ class FavoritesFragment : Fragment(), ShowsAdapter.AdapterCallback {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val binding = FragmentFavoritesBinding.inflate(inflater, container, false)
+        val binding = FragmentProfileBinding.inflate(inflater, container, false)
         this.binding = binding
         return binding.root
     }

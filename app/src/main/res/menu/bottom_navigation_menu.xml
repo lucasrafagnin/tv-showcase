@@ -2,21 +2,21 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/home_fragment"
-        android:checked="true"
-        android:icon="@drawable/ic_tab_home"
-        android:title="@string/tab_home_title"
-        app:showAsAction="ifRoom" />
-
-    <item
         android:id="@+id/schedule_fragment"
         android:icon="@drawable/ic_tab_schedule"
         android:title="@string/tab_schedule_title"
         app:showAsAction="ifRoom" />
 
     <item
-        android:id="@+id/favorites_fragment"
-        android:icon="@drawable/ic_tab_favorites"
-        android:title="@string/tab_favorites_title"
+        android:id="@+id/discovery_fragment"
+        android:checked="true"
+        android:icon="@drawable/ic_tab_discovery"
+        android:title="@string/tab_discovery_title"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/profile_fragment"
+        android:icon="@drawable/ic_tab_profile"
+        android:title="@string/tab_profile_title"
         app:showAsAction="ifRoom" />
 </menu>

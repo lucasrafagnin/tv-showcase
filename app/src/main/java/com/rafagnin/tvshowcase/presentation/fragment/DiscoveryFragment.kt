@@ -13,7 +13,7 @@ import androidx.paging.LoadState.Error
 import androidx.paging.LoadState.Loading
 import androidx.paging.LoadState.NotLoading
 import androidx.paging.cachedIn
-import com.rafagnin.tvshowcase.databinding.FragmentHomeBinding
+import com.rafagnin.tvshowcase.databinding.FragmentDiscoveryBinding
 import com.rafagnin.tvshowcase.ext.gone
 import com.rafagnin.tvshowcase.ext.show
 import com.rafagnin.tvshowcase.presentation.activity.ShowDetailActivity
@@ -24,9 +24,9 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class HomeFragment : Fragment(), ShowsPagingAdapter.AdapterCallback {
+class DiscoveryFragment : Fragment(), ShowsPagingAdapter.AdapterCallback {
 
-    private lateinit var binding: FragmentHomeBinding
+    private lateinit var binding: FragmentDiscoveryBinding
     private lateinit var viewModel: HomeViewModel
     private lateinit var adapter: ShowsPagingAdapter
 
@@ -35,7 +35,7 @@ class HomeFragment : Fragment(), ShowsPagingAdapter.AdapterCallback {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val binding = FragmentHomeBinding.inflate(inflater, container, false)
+        val binding = FragmentDiscoveryBinding.inflate(inflater, container, false)
         this.binding = binding
         return binding.root
     }

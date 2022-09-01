@@ -12,8 +12,8 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import com.rafagnin.tvshowcase.R
 import com.rafagnin.tvshowcase.databinding.ActivityMainBinding
-import com.rafagnin.tvshowcase.presentation.fragment.FavoritesFragment
-import com.rafagnin.tvshowcase.presentation.fragment.HomeFragment
+import com.rafagnin.tvshowcase.presentation.fragment.ProfileFragment
+import com.rafagnin.tvshowcase.presentation.fragment.DiscoveryFragment
 import com.rafagnin.tvshowcase.presentation.fragment.ScheduleFragment
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -32,8 +32,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() = with(binding.bottomNavigation) {
-        if (selectedItemId == R.id.home_fragment) finish()
-        else selectedItemId = R.id.home_fragment
+        if (selectedItemId == R.id.discovery_fragment) finish()
+        else selectedItemId = R.id.discovery_fragment
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -55,9 +55,9 @@ class MainActivity : AppCompatActivity() {
         val navHost = (supportFragmentManager.findFragmentById(R.id.fragment) as NavHostFragment)
         val appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.home_fragment,
                 R.id.schedule_fragment,
-                R.id.favorites_fragment,
+                R.id.discovery_fragment,
+                R.id.profile_fragment,
             )
         )
 
@@ -67,9 +67,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun checkShortcut() = when (intent?.action) {
-        HomeFragment.SHORTCUT -> R.id.home_fragment
+        DiscoveryFragment.SHORTCUT -> R.id.discovery_fragment
         ScheduleFragment.SHORTCUT -> R.id.schedule_fragment
-        FavoritesFragment.SHORTCUT -> R.id.favorites_fragment
+        ProfileFragment.SHORTCUT -> R.id.profile_fragment
         else -> null
     }?.also {
         binding.bottomNavigation.selectedItemId = it

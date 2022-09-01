@@ -3,23 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/home_fragment">
-
-    <fragment
-        android:id="@+id/home_fragment"
-        android:name="com.rafagnin.tvshowcase.presentation.fragment.HomeFragment"
-        android:label="@string/tab_home_title"
-        tools:layout="@layout/fragment_home" />
+    app:startDestination="@id/discovery_fragment">
 
     <fragment
         android:id="@+id/schedule_fragment"
         android:name="com.rafagnin.tvshowcase.presentation.fragment.ScheduleFragment"
         android:label="@string/tab_schedule_title"
+        tools:layout="@layout/fragment_discovery" />
+
+    <fragment
+        android:id="@+id/discovery_fragment"
+        android:name="com.rafagnin.tvshowcase.presentation.fragment.DiscoveryFragment"
+        android:label="@string/tab_discovery_title"
         tools:layout="@layout/fragment_schedule" />
 
     <fragment
-         android:id="@+id/favorites_fragment"
-        android:name="com.rafagnin.tvshowcase.presentation.fragment.FavoritesFragment"
-        android:label="@string/tab_favorites_title"
-        tools:layout="@layout/fragment_favorites" />
+         android:id="@+id/profile_fragment"
+        android:name="com.rafagnin.tvshowcase.presentation.fragment.ProfileFragment"
+        android:label="@string/tab_profile_title"
+        tools:layout="@layout/fragment_profile" />
 </navigation>

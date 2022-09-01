@@ -1,8 +1,8 @@
 <resources>
     <!-- Tabs -->
-    <string name="tab_home_title">Inicial</string>
-    <string name="tab_schedule_title">Programação</string>
-    <string name="tab_favorites_title">Favoritos</string>
+    <string name="tab_schedule_title">Agenda</string>
+    <string name="tab_discovery_title">Descobrir</string>
+    <string name="tab_profile_title">Perfil</string>
 
     <!-- Schedule -->
     <string name="schedule_season_prefix">T%1$s</string>
