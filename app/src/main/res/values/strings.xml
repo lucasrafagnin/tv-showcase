@@ -21,6 +21,7 @@
     <!-- Show detail -->
     <string name="show_description">Description</string>
     <string name="show_characters">Cast</string>
+    <string name="add_show">ADD SHOW</string>
 
     <!-- Error state -->
     <string name="error_title">Something went wrong</string>
@@ -33,4 +34,6 @@
 
     <!-- Common -->
     <string name="common_minutes">%1$d min</string>
+    <string name="favorite_show">Add show to favorite list</string>
+    <string name="unfavorite_show">Remove show from favorite list</string>
 </resources>

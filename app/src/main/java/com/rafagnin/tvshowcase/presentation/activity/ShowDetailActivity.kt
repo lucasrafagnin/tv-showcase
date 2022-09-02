@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -96,6 +97,7 @@ class ShowDetailActivity : AppCompatActivity() {
             lifecycleScope.launch {
                 show.let { viewModel.actionFlow.emit(ShowDetailAction.Favorite(it)) }
             }
+            Toast.makeText(context, if (!show.favorite) R.string.favorite_show else R.string.unfavorite_show, Toast.LENGTH_SHORT).show()
         }
         show()
     }

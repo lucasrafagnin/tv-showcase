@@ -19,6 +19,7 @@
     <!-- Show detail -->
     <string name="show_description">Descrição</string>
     <string name="show_characters">Elenco</string>
+    <string name="add_show">ADICIONAR</string>
 
     <!-- Error state -->
     <string name="error_title">Aconteceu algo de errado</string>
@@ -31,4 +32,6 @@
 
     <!-- Common -->
     <string name="common_minutes">%1$d min</string>
+    <string name="favorite_show">Adicionado aos favoritos</string>
+    <string name="unfavorite_show">Removido dos favoritos</string>
 </resources>
