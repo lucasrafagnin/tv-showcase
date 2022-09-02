@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="ItemSchedule">
+        <item name="android:background">@color/blue_medium</item>
+    </style>
+
+    <style name="ToolbarStyle">
+        <item name="android:background">@color/blue</item>
+        <item name="titleTextAppearance">@style/ToolbarTitle</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="ToolbarTitle" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textColor">@color/white</item>
+    </style>
+</resources>
