@@ -13,8 +13,9 @@
         app:layout_constraintTop_toTopOf="parent" >
 
         <androidx.appcompat.widget.Toolbar
-            style="@style/ToolbarStyle"
-            android:id="@+id/toolbar" />
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -31,7 +32,6 @@
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
-        android:theme="@style/BottomNavigationStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"

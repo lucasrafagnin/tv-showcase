@@ -1,6 +1,6 @@
 <resources>
 
-    <style name="Theme.TvShowcase" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Theme.TvShowcase" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="colorPrimary">@color/red</item>
         <item name="colorPrimaryVariant">@color/blue</item>
         <item name="colorOnPrimary">@color/white</item>
@@ -11,24 +11,30 @@
         <item name="android:textColor">@color/gray</item>
         <item name="android:statusBarColor">@color/status_bar</item>
         <item name="android:windowBackground">@color/blue_dark</item>
+
+        <item name="toolbarStyle">@style/Theme.Toolbar</item>
+        <item name="bottomNavigationStyle">@style/Theme.BottomNavigation</item>
     </style>
 
-    <style name="ItemSchedule">
-        <item name="android:background">@color/blue_medium</item>
-    </style>
-
-    <style name="BottomNavigationStyle">
+    <style name="Theme.Toolbar" parent="Widget.Material3.Toolbar">
         <item name="android:background">@color/blue</item>
+        <item name="titleTextAppearance">@style/Theme.ToolbarTitle</item>
     </style>
 
-    <style name="ToolbarStyle">
-        <item name="android:background">@color/blue</item>
-        <item name="titleTextAppearance">@style/ToolbarTitle</item>
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-    </style>
-
-    <style name="ToolbarTitle" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+    <style name="Theme.ToolbarTitle" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
         <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="Theme.BottomNavigation" parent="Widget.Material3.BottomNavigationView">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.BottomNavigation</item>
+        <item name="backgroundTint">@color/blue</item>
+        <item name="itemRippleColor">@color/blue_medium</item>
+        <item name="itemIconTint">@color/bottom_icon_color</item>
+    </style>
+
+    <style name="ThemeOverlay.BottomNavigation" parent="">
+        <item name="colorOnSurface">@color/gray</item>
+        <item name="colorOnSurfaceVariant">@color/gray</item>
+        <item name="colorSecondaryContainer">@color/gray</item>
     </style>
 </resources>

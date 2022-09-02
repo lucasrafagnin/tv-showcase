@@ -1,6 +1,6 @@
 <resources>
 
-    <style name="Theme.TvShowcase" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Theme.TvShowcase" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="colorPrimary">@color/red</item>
         <item name="colorPrimaryVariant">@color/blue</item>
         <item name="colorOnPrimary">@color/black</item>
@@ -11,5 +11,30 @@
         <item name="android:textColor">@color/black_light</item>
         <item name="android:statusBarColor">@color/status_bar</item>
         <item name="android:windowBackground">@color/gray_light</item>
+
+        <item name="toolbarStyle">@style/Theme.Toolbar</item>
+        <item name="bottomNavigationStyle">@style/Theme.BottomNavigation</item>
+    </style>
+
+    <style name="Theme.Toolbar" parent="Widget.Material3.Toolbar">
+        <item name="android:background">@color/white</item>
+        <item name="titleTextAppearance">@style/Theme.ToolbarTitle</item>
+    </style>
+
+    <style name="Theme.ToolbarTitle" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textColor">@color/blue_dark</item>
+    </style>
+
+    <style name="Theme.BottomNavigation" parent="Widget.Material3.BottomNavigationView">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.BottomNavigation</item>
+        <item name="backgroundTint">@color/white</item>
+        <item name="itemRippleColor">@color/gray_light</item>
+        <item name="itemIconTint">@color/bottom_icon_color</item>
+    </style>
+
+    <style name="ThemeOverlay.BottomNavigation" parent="">
+        <item name="colorOnSurface">@color/red</item>
+        <item name="colorOnSurfaceVariant">@color/blue_medium</item>
+        <item name="colorSecondaryContainer">@color/gray_light</item>
     </style>
 </resources>
