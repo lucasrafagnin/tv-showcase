@@ -1,21 +1,16 @@
 package com.rafagnin.tvshowcase.data.local
 
-import com.rafagnin.tvshowcase.data.local.dao.FavoriteDao
-import com.rafagnin.tvshowcase.data.local.dao.ShowDao
-import com.rafagnin.tvshowcase.data.model.local.LocalFavoriteModel
-import com.rafagnin.tvshowcase.data.model.local.LocalShowModel
-import kotlinx.coroutines.flow.Flow
+import com.rafagnin.tvshowcase.data.local.dao.UserShowDao
+import com.rafagnin.tvshowcase.data.model.local.UserShowModel
 import javax.inject.Inject
 
 class LocalDataSource @Inject constructor(
-    private val favoriteDao: FavoriteDao,
-    private val showDao: ShowDao,
+    private val dao: UserShowDao,
 ) {
-    fun getFavorites(): Flow<List<LocalFavoriteModel>> = favoriteDao.getAll()
-    fun getShows(): Flow<List<LocalShowModel>> = showDao.getAll()
-    fun isFavorite(id: Long) = favoriteDao.exist(id)
-    fun addFavorite(model: LocalFavoriteModel) = favoriteDao.insert(model)
-    fun addShow(model: LocalShowModel) = showDao.insert(model)
-    fun removeFavorite(model: LocalFavoriteModel) = favoriteDao.delete(model)
-    fun removeShow(model: LocalShowModel) = showDao.delete(model)
+    fun getFavorites(): List<UserShowModel> = dao.getFavorites()
+    fun getShows(id: Long?): List<UserShowModel> = id?.let { dao.getById(it) } ?: dao.getAdded()
+    fun isFavorite(id: Long) = dao.isFavorite(id)
+    fun addShow(model: UserShowModel) = dao.insert(model)
+    fun updateShow(model: UserShowModel) = dao.update(model)
+    fun removeShow(model: UserShowModel) = dao.delete(model)
 }

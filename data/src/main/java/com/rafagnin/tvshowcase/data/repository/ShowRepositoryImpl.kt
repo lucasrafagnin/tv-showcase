@@ -8,8 +8,6 @@ import com.rafagnin.tvshowcase.domain.data.ShowRepository
 import com.rafagnin.tvshowcase.domain.model.EpisodeModel
 import com.rafagnin.tvshowcase.domain.model.ShowDetailModel
 import com.rafagnin.tvshowcase.domain.model.ShowModel
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 class ShowRepositoryImpl @Inject constructor(
@@ -19,20 +17,20 @@ class ShowRepositoryImpl @Inject constructor(
     private val episodeToDomainMapper: EpisodeToDomainMapper
 ) : ShowRepository {
 
-    override fun getAddedShows(): Flow<List<ShowModel>> = localDataSource.getShows()
-        .map { it.map { model -> showToDomainMapper.map(model) } }
+    override fun getAddedShows(id: Long?): List<ShowModel> = localDataSource.getShows(id)
+        .map { model -> showToDomainMapper.map(model) }
 
-    override fun getFavorites(): Flow<List<ShowModel>> = localDataSource.getFavorites()
-        .map { it.map { model -> showToDomainMapper.map(model) } }
+    override fun getFavorites(): List<ShowModel> = localDataSource.getFavorites()
+        .map { model -> showToDomainMapper.map(model) }
 
-    override fun addShow(model: ShowDetailModel, toAdd: Boolean) {
-        if (toAdd) localDataSource.addShow(showToDomainMapper.mapShow(model))
-        else localDataSource.removeShow(showToDomainMapper.mapShow(model))
+    override fun addShow(model: ShowDetailModel) {
+        if (model.added) localDataSource.addShow(showToDomainMapper.map(model))
+        else localDataSource.updateShow(showToDomainMapper.map(model))
     }
 
-    override fun favoriteShow(model: ShowDetailModel, toFavorite: Boolean) {
-        if (toFavorite) localDataSource.addFavorite(showToDomainMapper.map(model))
-        else localDataSource.removeFavorite(showToDomainMapper.map(model))
+    override fun favoriteShow(model: ShowDetailModel) {
+        if (model.favorite) localDataSource.addShow(showToDomainMapper.map(model))
+        else localDataSource.updateShow(showToDomainMapper.map(model))
     }
 
     override fun isShowFavorite(id: Long) = localDataSource.isFavorite(id)

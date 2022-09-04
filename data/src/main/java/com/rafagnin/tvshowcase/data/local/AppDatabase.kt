@@ -2,20 +2,16 @@ package com.rafagnin.tvshowcase.data.local
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import com.rafagnin.tvshowcase.data.local.dao.FavoriteDao
-import com.rafagnin.tvshowcase.data.local.dao.ShowDao
-import com.rafagnin.tvshowcase.data.model.local.LocalFavoriteModel
-import com.rafagnin.tvshowcase.data.model.local.LocalShowModel
+import com.rafagnin.tvshowcase.data.local.dao.UserShowDao
+import com.rafagnin.tvshowcase.data.model.local.UserShowModel
 
 @Database(
     entities = [
-        LocalFavoriteModel::class,
-        LocalShowModel::class,
+        UserShowModel::class,
     ],
     version = 1,
     exportSchema = true
 )
 abstract class AppDatabase : RoomDatabase() {
-    abstract fun favoriteDao(): FavoriteDao
-    abstract fun showDao(): ShowDao
+    abstract fun showDao(): UserShowDao
 }

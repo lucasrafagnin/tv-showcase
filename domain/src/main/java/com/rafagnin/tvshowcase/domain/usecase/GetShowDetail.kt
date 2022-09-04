@@ -7,14 +7,15 @@ import javax.inject.Inject
 
 class GetShowDetail @Inject constructor(
     private val repository: ShowRepository,
-    private val isShowFavorite: IsShowFavorite
 ) {
 
     suspend operator fun invoke(id: Long): Resource<ShowDetailModel> {
         return try {
+            val addedShows = repository.getAddedShows(id)
             Resource.Success(
                 repository.getShowDetail(id).copy(
-                    favorite = isShowFavorite.invoke(id).data == true
+                    favorite = addedShows.firstOrNull()?.favorite == true,
+                    added = addedShows.firstOrNull()?.added == true,
                 )
             )
         } catch (exception: Exception) {

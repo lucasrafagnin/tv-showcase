@@ -3,8 +3,7 @@ package com.rafagnin.tvshowcase.di
 import android.content.Context
 import androidx.room.Room
 import com.rafagnin.tvshowcase.data.local.AppDatabase
-import com.rafagnin.tvshowcase.data.local.dao.FavoriteDao
-import com.rafagnin.tvshowcase.data.local.dao.ShowDao
+import com.rafagnin.tvshowcase.data.local.dao.UserShowDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -27,12 +26,7 @@ class DatabaseModule {
     }
 
     @Provides
-    fun provideFavoritesDao(appDatabase: AppDatabase): FavoriteDao {
-        return appDatabase.favoriteDao()
-    }
-
-    @Provides
-    fun provideShowsDao(appDatabase: AppDatabase): ShowDao {
+    fun provideShowsDao(appDatabase: AppDatabase): UserShowDao {
         return appDatabase.showDao()
     }
 }

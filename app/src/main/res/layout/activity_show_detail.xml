@@ -61,6 +61,7 @@
         android:importantForAccessibility="no"
         android:text="@string/add_show"
         android:textColor="@color/red"
+        android:visibility="invisible"
         app:backgroundTint="@color/white"
         app:icon="@drawable/ic_add_show"
         app:iconTint="@color/red"

@@ -4,7 +4,6 @@ import com.rafagnin.tvshowcase.data.local.LocalDataSource
 import com.rafagnin.tvshowcase.data.mapper.EpisodeToDomainMapper
 import com.rafagnin.tvshowcase.data.mapper.ShowToDomainMapper
 import com.rafagnin.tvshowcase.data.model.json.EpisodeJson
-import com.rafagnin.tvshowcase.data.model.local.LocalFavoriteModel
 import com.rafagnin.tvshowcase.data.model.json.SearchJson
 import com.rafagnin.tvshowcase.data.model.json.ShowJson
 import com.rafagnin.tvshowcase.data.remote.RemoteDataSource

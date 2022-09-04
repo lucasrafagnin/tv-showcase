@@ -11,8 +11,9 @@ class FavoriteShow @Inject constructor(
 
     operator fun invoke(model: ShowDetailModel, toFavorite: Boolean): Resource<ShowDetailModel> {
         return try {
-            repository.favoriteShow(model, toFavorite)
-            Resource.Success(model.copy(favorite = toFavorite))
+            val newModel = model.copy(favorite = toFavorite)
+            repository.favoriteShow(newModel)
+            Resource.Success(newModel)
         } catch (exception: Exception) {
             Resource.Error(exception.message)
         }

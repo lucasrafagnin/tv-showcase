@@ -1,9 +1,7 @@
 package com.rafagnin.tvshowcase.local
 
 import com.rafagnin.tvshowcase.data.local.LocalDataSource
-import com.rafagnin.tvshowcase.data.local.dao.FavoriteDao
-import com.rafagnin.tvshowcase.data.local.dao.ShowDao
-import com.rafagnin.tvshowcase.data.model.local.LocalFavoriteModel
+import com.rafagnin.tvshowcase.data.local.dao.UserShowDao
 import io.mockk.*
 import io.mockk.impl.annotations.MockK
 import kotlinx.coroutines.flow.emptyFlow
@@ -14,7 +12,7 @@ import org.junit.Test
 class LocalDataSourceTest {
 
     @MockK lateinit var dao: FavoriteDao
-    @MockK lateinit var showDao: ShowDao
+    @MockK lateinit var showDao: UserShowDao
 
     private lateinit var localDataSource: LocalDataSource
 

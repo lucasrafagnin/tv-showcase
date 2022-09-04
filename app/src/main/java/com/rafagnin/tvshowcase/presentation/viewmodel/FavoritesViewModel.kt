@@ -32,22 +32,22 @@ class FavoritesViewModel @Inject constructor(
     }
 
     private fun getShows() = viewModelScope.launch(Dispatchers.IO) {
-        merge(getAddedShows(), getFavorites())
-            .catch { state.value = Error }
-            .collect {
-                when (it) {
-                    is Resource.Success -> {
-                        state.value =
-                            if (it.data.isNullOrEmpty()) Empty
-                            else ShowsLoaded(
-                                favorites = it.data?.filter { it.favorite == true },
-                                addedShows = it.data?.filter { it.added == true }
-                            )
-                    }
-                    is Resource.Loading -> state.value = Loading
-                    is Resource.Error -> state.value = Error
-                }
-            }
+//        merge(getAddedShows(null))
+//            .catch { state.value = Error }
+//            .collect {
+//                when (it) {
+//                    is Resource.Success -> {
+//                        state.value =
+//                            if (it.data.isNullOrEmpty()) Empty
+//                            else ShowsLoaded(
+//                                favorites = it.data?.filter { it.favorite == true },
+//                                addedShows = it.data?.filter { it.added == true }
+//                            )
+//                    }
+//                    is Resource.Loading -> state.value = Loading
+//                    is Resource.Error -> state.value = Error
+//                }
+//            }
     }
 
     private suspend fun handleActions() {

@@ -11,8 +11,9 @@ class AddShow @Inject constructor(
 
     operator fun invoke(model: ShowDetailModel, toAdd: Boolean): Resource<ShowDetailModel> {
         return try {
-            repository.addShow(model, toAdd)
-            Resource.Success(model.copy(added = toAdd))
+            val newModel = model.copy(added = toAdd)
+            repository.addShow(newModel)
+            Resource.Success(newModel)
         } catch (exception: Exception) {
             Resource.Error(exception.message)
         }

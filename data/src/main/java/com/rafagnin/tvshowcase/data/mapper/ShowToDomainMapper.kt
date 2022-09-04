@@ -1,10 +1,9 @@
 package com.rafagnin.tvshowcase.data.mapper
 
 import com.rafagnin.tvshowcase.data.ext.parseHtml
-import com.rafagnin.tvshowcase.data.model.local.LocalFavoriteModel
 import com.rafagnin.tvshowcase.data.model.json.ScheduleJson
 import com.rafagnin.tvshowcase.data.model.json.ShowJson
-import com.rafagnin.tvshowcase.data.model.local.LocalShowModel
+import com.rafagnin.tvshowcase.data.model.local.UserShowModel
 import com.rafagnin.tvshowcase.domain.model.ShowDetailModel
 import com.rafagnin.tvshowcase.domain.model.ShowModel
 import javax.inject.Inject
@@ -21,37 +20,23 @@ class ShowToDomainMapper @Inject constructor(
     )
 
     /**
-     * LocalFavoriteModel
+     * UserShowModel
      */
 
-    fun map(model: ShowDetailModel) = LocalFavoriteModel(
+    fun map(model: ShowDetailModel) = UserShowModel(
         id = model.id,
         name = model.name,
-        image = model.image
+        image = model.image,
+        added = model.added,
+        favorite = model.favorite
     )
 
-    fun map(local: LocalFavoriteModel) = ShowModel(
+    fun map(local: UserShowModel) = ShowModel(
         id = local.id,
         name = local.name,
         image = local.image,
-        favorite = true
-    )
-
-    /**
-     * LocalShowModel
-     */
-
-    fun mapShow(model: ShowDetailModel) = LocalShowModel(
-        id = model.id,
-        name = model.name,
-        image = model.image
-    )
-
-    fun map(local: LocalShowModel) = ShowModel(
-        id = local.id,
-        name = local.name,
-        image = local.image,
-        added = true
+        added = local.added,
+        favorite = local.favorite
     )
 
     fun mapDetail(json: ShowJson) = ShowDetailModel(
