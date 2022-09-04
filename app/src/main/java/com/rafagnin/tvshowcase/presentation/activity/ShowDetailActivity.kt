@@ -7,6 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import coil.load
@@ -73,6 +74,8 @@ class ShowDetailActivity : AppCompatActivity() {
 
     private fun setupView(show: ShowDetailModel?) = show?.let {
         setFavorite(show)
+        setAdded(show)
+
         binding.poster.load(it.image) {
             transformations(RoundedCornersTransformation(10f))
         }
@@ -98,6 +101,19 @@ class ShowDetailActivity : AppCompatActivity() {
                 show.let { viewModel.actionFlow.emit(ShowDetailAction.Favorite(it)) }
             }
             Toast.makeText(context, if (!show.favorite) R.string.favorite_show else R.string.unfavorite_show, Toast.LENGTH_SHORT).show()
+        }
+        show()
+    }
+
+    private fun setAdded(show: ShowDetailModel) = with(binding.addShow) {
+        setIconResource(if (show.added) R.drawable.ic_added_show else R.drawable.ic_add_show)
+        setIconTintResource(if (show.added) R.color.white else R.color.red)
+        setTextColor(ActivityCompat.getColor(context, if (show.added) R.color.white else R.color.red))
+        setBackgroundColor(ActivityCompat.getColor(context, if (show.added) R.color.red else R.color.white))
+        setOnClickListener {
+            lifecycleScope.launch {
+                show.let { viewModel.actionFlow.emit(ShowDetailAction.Add(it)) }
+            }
         }
         show()
     }

@@ -1,7 +1,7 @@
-package com.rafagnin.tvshowcase.data.model
+package com.rafagnin.tvshowcase.data.model.json
 
 import com.squareup.moshi.Json
 
-data class CountryJson(
+data class NetworkJson(
     @Json(name = "name") val name: String
 )

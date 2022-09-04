@@ -6,8 +6,10 @@ import com.rafagnin.tvshowcase.domain.model.ShowModel
 import kotlinx.coroutines.flow.Flow
 
 interface ShowRepository {
+    fun getAddedShows(): Flow<List<ShowModel>>
     fun getFavorites(): Flow<List<ShowModel>>
     fun favoriteShow(model: ShowDetailModel, toFavorite: Boolean)
+    fun addShow(model: ShowDetailModel, toAdd: Boolean)
     fun isShowFavorite(id: Long): Boolean
     suspend fun searchShows(query: String): List<ShowModel>
     suspend fun getShows(page: Int): List<ShowModel>

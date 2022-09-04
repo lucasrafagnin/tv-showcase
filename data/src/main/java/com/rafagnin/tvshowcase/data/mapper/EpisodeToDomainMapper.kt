@@ -1,8 +1,8 @@
 package com.rafagnin.tvshowcase.data.mapper
 
 import com.rafagnin.tvshowcase.data.ext.parseHtml
-import com.rafagnin.tvshowcase.data.model.EpisodeJson
-import com.rafagnin.tvshowcase.data.model.ShowJson
+import com.rafagnin.tvshowcase.data.model.json.EpisodeJson
+import com.rafagnin.tvshowcase.data.model.json.ShowJson
 import com.rafagnin.tvshowcase.domain.common.DateHelper
 import com.rafagnin.tvshowcase.domain.model.EpisodeModel
 import com.rafagnin.tvshowcase.domain.model.ShowModel

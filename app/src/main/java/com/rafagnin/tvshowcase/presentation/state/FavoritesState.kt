@@ -7,6 +7,7 @@ sealed class FavoritesState {
     object Loading : FavoritesState()
     object Empty : FavoritesState()
     data class ShowsLoaded(
-        val items: List<ShowModel>?
+        val favorites: List<ShowModel>?,
+        val addedShows: List<ShowModel>?
     ) : FavoritesState()
 }

@@ -1,8 +1,9 @@
 package com.rafagnin.tvshowcase.local
 
 import com.rafagnin.tvshowcase.data.local.LocalDataSource
-import com.rafagnin.tvshowcase.data.local.ShowDao
-import com.rafagnin.tvshowcase.data.model.LocalShowModel
+import com.rafagnin.tvshowcase.data.local.dao.FavoriteDao
+import com.rafagnin.tvshowcase.data.local.dao.ShowDao
+import com.rafagnin.tvshowcase.data.model.local.LocalFavoriteModel
 import io.mockk.*
 import io.mockk.impl.annotations.MockK
 import kotlinx.coroutines.flow.emptyFlow
@@ -12,14 +13,15 @@ import org.junit.Test
 
 class LocalDataSourceTest {
 
-    @MockK lateinit var dao: ShowDao
+    @MockK lateinit var dao: FavoriteDao
+    @MockK lateinit var showDao: ShowDao
 
     private lateinit var localDataSource: LocalDataSource
 
     @Before
     fun setUp() {
         MockKAnnotations.init(this)
-        localDataSource = LocalDataSource(dao)
+        localDataSource = LocalDataSource(dao, showDao)
     }
 
     @Test
@@ -32,23 +34,23 @@ class LocalDataSourceTest {
     @Test
     fun `should exist call expected dao`() = runBlocking {
         coEvery { dao.exist(1) } returns true
-        localDataSource.exist(1)
+        localDataSource.isFavorite(1)
         verify { dao.exist(1) }
     }
 
     @Test
     fun `should add call expected dao`() = runBlocking {
-        val model = mockk<LocalShowModel>()
+        val model = mockk<LocalFavoriteModel>()
         coEvery { dao.insert(model) } just runs
-        localDataSource.add(model)
+        localDataSource.addFavorite(model)
         verify { dao.insert(model) }
     }
 
     @Test
     fun `should remove call expected dao`() = runBlocking {
-        val model = mockk<LocalShowModel>()
+        val model = mockk<LocalFavoriteModel>()
         coEvery { dao.delete(model) } just runs
-        localDataSource.remove(model)
+        localDataSource.removeFavorite(model)
         verify { dao.delete(model) }
     }
 }

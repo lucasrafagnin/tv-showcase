@@ -1,6 +1,6 @@
 package com.rafagnin.tvshowcase.data.mapper
 
-import com.rafagnin.tvshowcase.data.model.CastJson
+import com.rafagnin.tvshowcase.data.model.json.CastJson
 import com.rafagnin.tvshowcase.domain.model.CharacterModel
 import javax.inject.Inject
 

@@ -1,4 +1,4 @@
-package com.rafagnin.tvshowcase.data.model
+package com.rafagnin.tvshowcase.data.model.json
 
 import androidx.annotation.Keep
 import com.squareup.moshi.Json

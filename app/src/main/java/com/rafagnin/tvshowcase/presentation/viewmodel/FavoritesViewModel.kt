@@ -3,25 +3,21 @@ package com.rafagnin.tvshowcase.presentation.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.rafagnin.tvshowcase.domain.Resource
+import com.rafagnin.tvshowcase.domain.usecase.GetAddedShows
 import com.rafagnin.tvshowcase.domain.usecase.GetFavorites
 import com.rafagnin.tvshowcase.presentation.action.FavoritesAction
 import com.rafagnin.tvshowcase.presentation.state.FavoritesState
-import com.rafagnin.tvshowcase.presentation.state.FavoritesState.Empty
-import com.rafagnin.tvshowcase.presentation.state.FavoritesState.Error
-import com.rafagnin.tvshowcase.presentation.state.FavoritesState.Loading
-import com.rafagnin.tvshowcase.presentation.state.FavoritesState.ShowsLoaded
+import com.rafagnin.tvshowcase.presentation.state.FavoritesState.*
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class FavoritesViewModel @Inject constructor(
-    private val getFavorites: GetFavorites
+    private val getFavorites: GetFavorites,
+    private val getAddedShows: GetAddedShows
 ) : ViewModel() {
 
     private val state: MutableStateFlow<FavoritesState> = MutableStateFlow(Loading)
@@ -36,14 +32,17 @@ class FavoritesViewModel @Inject constructor(
     }
 
     private fun getShows() = viewModelScope.launch(Dispatchers.IO) {
-        getFavorites.invoke()
+        merge(getAddedShows(), getFavorites())
             .catch { state.value = Error }
             .collect {
                 when (it) {
                     is Resource.Success -> {
                         state.value =
                             if (it.data.isNullOrEmpty()) Empty
-                            else ShowsLoaded(it.data)
+                            else ShowsLoaded(
+                                favorites = it.data?.filter { it.favorite == true },
+                                addedShows = it.data?.filter { it.added == true }
+                            )
                     }
                     is Resource.Loading -> state.value = Loading
                     is Resource.Error -> state.value = Error

@@ -9,4 +9,7 @@ sealed class ShowDetailAction {
     data class Favorite(
         val model: ShowDetailModel
     ) : ShowDetailAction()
+    data class Add(
+        val model: ShowDetailModel
+    ) : ShowDetailAction()
 }

@@ -1,8 +1,8 @@
 package com.rafagnin.tvshowcase.data.remote.service
 
-import com.rafagnin.tvshowcase.data.model.EpisodeJson
-import com.rafagnin.tvshowcase.data.model.SearchJson
-import com.rafagnin.tvshowcase.data.model.ShowJson
+import com.rafagnin.tvshowcase.data.model.json.EpisodeJson
+import com.rafagnin.tvshowcase.data.model.json.SearchJson
+import com.rafagnin.tvshowcase.data.model.json.ShowJson
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query

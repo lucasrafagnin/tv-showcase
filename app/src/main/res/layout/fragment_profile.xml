@@ -1,20 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/list"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="4dp"
-        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        app:spanCount="3" />
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/watching_title"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@color/blue_medium"
+                android:drawablePadding="12dp"
+                android:gravity="center_vertical"
+                android:paddingStart="12dp"
+                android:text="Assistindo"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:drawableStartCompat="@drawable/ic_shows_watching"
+                tools:ignore="RtlSymmetry" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/watching"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="4dp"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:spanCount="3" />
+
+            <TextView
+                android:id="@+id/favorite_title"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@color/blue_medium"
+                android:drawablePadding="12dp"
+                android:gravity="center_vertical"
+                android:paddingStart="12dp"
+                android:text="Favoritos"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:drawableStartCompat="@drawable/ic_shows_favorite"
+                tools:ignore="RtlSymmetry" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/favorites"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="4dp"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:spanCount="3" />
+
+        </LinearLayout>
+
+    </ScrollView>
 
     <ProgressBar
-        style="@style/ProgressBar"
-        android:id="@+id/loading" />
+        android:id="@+id/loading"
+        style="@style/ProgressBar" />
 
     <include
         android:id="@+id/error_state"

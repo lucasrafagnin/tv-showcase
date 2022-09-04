@@ -1,9 +1,10 @@
 package com.rafagnin.tvshowcase.data.mapper
 
 import com.rafagnin.tvshowcase.data.ext.parseHtml
-import com.rafagnin.tvshowcase.data.model.LocalShowModel
-import com.rafagnin.tvshowcase.data.model.ScheduleJson
-import com.rafagnin.tvshowcase.data.model.ShowJson
+import com.rafagnin.tvshowcase.data.model.local.LocalFavoriteModel
+import com.rafagnin.tvshowcase.data.model.json.ScheduleJson
+import com.rafagnin.tvshowcase.data.model.json.ShowJson
+import com.rafagnin.tvshowcase.data.model.local.LocalShowModel
 import com.rafagnin.tvshowcase.domain.model.ShowDetailModel
 import com.rafagnin.tvshowcase.domain.model.ShowModel
 import javax.inject.Inject
@@ -19,7 +20,28 @@ class ShowToDomainMapper @Inject constructor(
         image = json.image?.medium
     )
 
-    fun map(model: ShowDetailModel) = LocalShowModel(
+    /**
+     * LocalFavoriteModel
+     */
+
+    fun map(model: ShowDetailModel) = LocalFavoriteModel(
+        id = model.id,
+        name = model.name,
+        image = model.image
+    )
+
+    fun map(local: LocalFavoriteModel) = ShowModel(
+        id = local.id,
+        name = local.name,
+        image = local.image,
+        favorite = true
+    )
+
+    /**
+     * LocalShowModel
+     */
+
+    fun mapShow(model: ShowDetailModel) = LocalShowModel(
         id = model.id,
         name = model.name,
         image = model.image
@@ -28,7 +50,8 @@ class ShowToDomainMapper @Inject constructor(
     fun map(local: LocalShowModel) = ShowModel(
         id = local.id,
         name = local.name,
-        image = local.image
+        image = local.image,
+        added = true
     )
 
     fun mapDetail(json: ShowJson) = ShowDetailModel(
@@ -45,7 +68,8 @@ class ShowToDomainMapper @Inject constructor(
         time = parseSchedule(json.schedule),
         seasons = json.embedded?.episodes?.map { episodeToDomainMapper.map(it) }
             ?.groupBy { it.season!! },
-        favorite = false
+        favorite = false,
+        added = false
     )
 
     private fun parseSchedule(schedule: ScheduleJson?) = schedule?.let {

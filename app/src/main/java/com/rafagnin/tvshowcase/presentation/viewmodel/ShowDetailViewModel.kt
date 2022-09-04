@@ -4,9 +4,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.rafagnin.tvshowcase.domain.Resource
 import com.rafagnin.tvshowcase.domain.model.ShowDetailModel
+import com.rafagnin.tvshowcase.domain.usecase.AddShow
 import com.rafagnin.tvshowcase.domain.usecase.FavoriteShow
 import com.rafagnin.tvshowcase.domain.usecase.GetShowDetail
 import com.rafagnin.tvshowcase.presentation.action.ShowDetailAction
+import com.rafagnin.tvshowcase.presentation.action.ShowDetailAction.Add
 import com.rafagnin.tvshowcase.presentation.action.ShowDetailAction.Favorite
 import com.rafagnin.tvshowcase.presentation.action.ShowDetailAction.Retry
 import com.rafagnin.tvshowcase.presentation.state.ShowDetailState
@@ -24,7 +26,8 @@ import javax.inject.Inject
 @HiltViewModel
 class ShowDetailViewModel @Inject constructor(
     private val getShowDetail: GetShowDetail,
-    private val favoriteShow: FavoriteShow
+    private val favoriteShow: FavoriteShow,
+    private val addShow: AddShow,
 ) : ViewModel() {
 
     private val state: MutableStateFlow<ShowDetailState> = MutableStateFlow(Loading)
@@ -53,10 +56,18 @@ class ShowDetailViewModel @Inject constructor(
         }
     }
 
+    private fun addShow(model: ShowDetailModel) = viewModelScope.launch(Dispatchers.IO) {
+        when (val result = addShow(model, !model.added)) {
+            is Resource.Success -> state.value = Loaded(result.data)
+            else -> state.value = Error
+        }
+    }
+
     private suspend fun handleActions() {
         actionFlow.collect {
             when (it) {
                 is Favorite -> favoriteShow(it.model)
+                is Add -> addShow(it.model)
                 is Retry -> getShowDetail(it.id)
             }
         }

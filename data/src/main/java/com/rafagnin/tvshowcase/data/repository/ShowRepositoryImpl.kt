@@ -19,15 +19,23 @@ class ShowRepositoryImpl @Inject constructor(
     private val episodeToDomainMapper: EpisodeToDomainMapper
 ) : ShowRepository {
 
+    override fun getAddedShows(): Flow<List<ShowModel>> = localDataSource.getShows()
+        .map { it.map { model -> showToDomainMapper.map(model) } }
+
     override fun getFavorites(): Flow<List<ShowModel>> = localDataSource.getFavorites()
         .map { it.map { model -> showToDomainMapper.map(model) } }
 
-    override fun favoriteShow(model: ShowDetailModel, toFavorite: Boolean) {
-        if (toFavorite) localDataSource.add(showToDomainMapper.map(model))
-        else localDataSource.remove(showToDomainMapper.map(model))
+    override fun addShow(model: ShowDetailModel, toAdd: Boolean) {
+        if (toAdd) localDataSource.addShow(showToDomainMapper.mapShow(model))
+        else localDataSource.removeShow(showToDomainMapper.mapShow(model))
     }
 
-    override fun isShowFavorite(id: Long) = localDataSource.exist(id)
+    override fun favoriteShow(model: ShowDetailModel, toFavorite: Boolean) {
+        if (toFavorite) localDataSource.addFavorite(showToDomainMapper.map(model))
+        else localDataSource.removeFavorite(showToDomainMapper.map(model))
+    }
+
+    override fun isShowFavorite(id: Long) = localDataSource.isFavorite(id)
 
     override suspend fun getShows(page: Int): List<ShowModel> {
         return remoteDataSource.getShows(page).map { showToDomainMapper.map(it) }

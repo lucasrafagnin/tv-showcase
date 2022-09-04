@@ -2,6 +2,7 @@ package com.rafagnin.tvshowcase.presentation.fragment
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,12 +16,11 @@ import com.rafagnin.tvshowcase.presentation.action.FavoritesAction.Retry
 import com.rafagnin.tvshowcase.presentation.activity.ShowDetailActivity
 import com.rafagnin.tvshowcase.presentation.adapter.ShowsAdapter
 import com.rafagnin.tvshowcase.presentation.state.FavoritesState
-import com.rafagnin.tvshowcase.presentation.state.FavoritesState.Empty
-import com.rafagnin.tvshowcase.presentation.state.FavoritesState.Error
-import com.rafagnin.tvshowcase.presentation.state.FavoritesState.Loading
-import com.rafagnin.tvshowcase.presentation.state.FavoritesState.ShowsLoaded
+import com.rafagnin.tvshowcase.presentation.state.FavoritesState.*
 import com.rafagnin.tvshowcase.presentation.viewmodel.FavoritesViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -28,7 +28,8 @@ class ProfileFragment : Fragment(), ShowsAdapter.AdapterCallback {
 
     private lateinit var binding: FragmentProfileBinding
     private lateinit var viewModel: FavoritesViewModel
-    private lateinit var adapter: ShowsAdapter
+    private lateinit var favoritesAdapter: ShowsAdapter
+    private lateinit var watchingAdapter: ShowsAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -43,8 +44,10 @@ class ProfileFragment : Fragment(), ShowsAdapter.AdapterCallback {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(requireActivity())[FavoritesViewModel::class.java]
-        adapter = ShowsAdapter(this)
-        binding.list.adapter = adapter
+        favoritesAdapter = ShowsAdapter(this)
+        watchingAdapter = ShowsAdapter(this)
+        binding.watching.adapter = watchingAdapter
+        binding.favorites.adapter = favoritesAdapter
 
         lifecycleScope.launchWhenCreated {
             viewModel._state.collect { render(it) }
@@ -60,12 +63,14 @@ class ProfileFragment : Fragment(), ShowsAdapter.AdapterCallback {
     override fun onShowClick(id: Long) = openDetailScreen(id)
 
     private fun render(state: FavoritesState) {
-        binding.list.run { if (state is ShowsLoaded) show() else gone() }
+        binding.watching.run { if (state is ShowsLoaded) show() }
+        binding.favorites.run { if (state is ShowsLoaded) show() }
         binding.loading.run { if (state is Loading) show() else gone() }
         binding.errorState.root.run { if (state is Error) show() else gone() }
         binding.emptyState.root.run { if (state is Empty) show() else gone() }
 
-        if (state is ShowsLoaded) adapter.update(state.items)
+        if (state is ShowsLoaded) favoritesAdapter.update(state.favorites)
+        if (state is ShowsLoaded) watchingAdapter.update(state.addedShows)
     }
 
     private fun openDetailScreen(id: Long) {
