@@ -6,7 +6,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeViewModel @Inject constructor(
+class DiscoveryViewModel @Inject constructor(
     private val getAllShows: GetAllShows
 ) : ViewModel() {
 

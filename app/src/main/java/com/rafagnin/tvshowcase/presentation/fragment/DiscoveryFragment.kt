@@ -18,7 +18,7 @@ import com.rafagnin.tvshowcase.ext.gone
 import com.rafagnin.tvshowcase.ext.show
 import com.rafagnin.tvshowcase.presentation.activity.ShowDetailActivity
 import com.rafagnin.tvshowcase.presentation.adapter.ShowsPagingAdapter
-import com.rafagnin.tvshowcase.presentation.viewmodel.HomeViewModel
+import com.rafagnin.tvshowcase.presentation.viewmodel.DiscoveryViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -27,7 +27,7 @@ import kotlinx.coroutines.launch
 class DiscoveryFragment : Fragment(), ShowsPagingAdapter.AdapterCallback {
 
     private lateinit var binding: FragmentDiscoveryBinding
-    private lateinit var viewModel: HomeViewModel
+    private lateinit var viewModel: DiscoveryViewModel
     private lateinit var adapter: ShowsPagingAdapter
 
     override fun onCreateView(
@@ -42,7 +42,7 @@ class DiscoveryFragment : Fragment(), ShowsPagingAdapter.AdapterCallback {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = ViewModelProvider(requireActivity())[HomeViewModel::class.java]
+        viewModel = ViewModelProvider(requireActivity())[DiscoveryViewModel::class.java]
         adapter = ShowsPagingAdapter(this)
         binding.list.adapter = adapter
         binding.errorState.retry.setOnClickListener { adapter.retry() }

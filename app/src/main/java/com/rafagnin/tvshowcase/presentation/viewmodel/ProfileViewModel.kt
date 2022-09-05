@@ -2,9 +2,7 @@ package com.rafagnin.tvshowcase.presentation.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.rafagnin.tvshowcase.domain.Resource
 import com.rafagnin.tvshowcase.domain.usecase.GetAddedShows
-import com.rafagnin.tvshowcase.domain.usecase.GetFavorites
 import com.rafagnin.tvshowcase.presentation.action.FavoritesAction
 import com.rafagnin.tvshowcase.presentation.state.FavoritesState
 import com.rafagnin.tvshowcase.presentation.state.FavoritesState.*
@@ -15,8 +13,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class FavoritesViewModel @Inject constructor(
-    private val getFavorites: GetFavorites,
+class ProfileViewModel @Inject constructor(
     private val getAddedShows: GetAddedShows
 ) : ViewModel() {
 
@@ -25,30 +22,23 @@ class FavoritesViewModel @Inject constructor(
     val _state: StateFlow<FavoritesState> = state
 
     init {
-        getShows()
         viewModelScope.launch {
             handleActions()
         }
+        viewModelScope.launch(Dispatchers.IO) {
+            getShows()
+        }
     }
 
-    private fun getShows() = viewModelScope.launch(Dispatchers.IO) {
-//        merge(getAddedShows(null))
-//            .catch { state.value = Error }
-//            .collect {
-//                when (it) {
-//                    is Resource.Success -> {
-//                        state.value =
-//                            if (it.data.isNullOrEmpty()) Empty
-//                            else ShowsLoaded(
-//                                favorites = it.data?.filter { it.favorite == true },
-//                                addedShows = it.data?.filter { it.added == true }
-//                            )
-//                    }
-//                    is Resource.Loading -> state.value = Loading
-//                    is Resource.Error -> state.value = Error
-//                }
-//            }
-    }
+    private suspend fun getShows() = getAddedShows()
+        .collect {
+            state.value =
+                if (it.isEmpty()) Empty
+                else ShowsLoaded(
+                    favorites = it.filter { it.favorite == true },
+                    addedShows = it.filter { it.added == true }
+                )
+        }
 
     private suspend fun handleActions() {
         actionFlow.collect {

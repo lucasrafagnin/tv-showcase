@@ -2,18 +2,19 @@ package com.rafagnin.tvshowcase.data.local.dao
 
 import androidx.room.*
 import com.rafagnin.tvshowcase.data.model.local.UserShowModel
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface UserShowDao {
 
-    @Query("SELECT * FROM user_shows WHERE user_shows.id = :id ORDER BY user_shows.name")
-    fun getById(id: Long): List<UserShowModel>
+    @Query("SELECT * FROM user_shows ORDER BY user_shows.name")
+    fun getAll(): Flow<List<UserShowModel>>
 
-    @Query("SELECT * FROM user_shows WHERE user_shows.added = 1 ORDER BY user_shows.name")
-    fun getAdded(): List<UserShowModel>
+    @Query("SELECT * FROM user_shows WHERE user_shows.id = :id ORDER BY user_shows.name")
+    fun getById(id: Long): Flow<List<UserShowModel>>
 
     @Query("SELECT * FROM user_shows WHERE user_shows.favorite = 1 ORDER BY user_shows.name")
-    fun getFavorites(): List<UserShowModel>
+    suspend fun getFavorites(): List<UserShowModel>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(vararg model: UserShowModel)

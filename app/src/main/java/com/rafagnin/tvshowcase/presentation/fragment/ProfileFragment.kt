@@ -2,7 +2,6 @@ package com.rafagnin.tvshowcase.presentation.fragment
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,17 +16,15 @@ import com.rafagnin.tvshowcase.presentation.activity.ShowDetailActivity
 import com.rafagnin.tvshowcase.presentation.adapter.ShowsAdapter
 import com.rafagnin.tvshowcase.presentation.state.FavoritesState
 import com.rafagnin.tvshowcase.presentation.state.FavoritesState.*
-import com.rafagnin.tvshowcase.presentation.viewmodel.FavoritesViewModel
+import com.rafagnin.tvshowcase.presentation.viewmodel.ProfileViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class ProfileFragment : Fragment(), ShowsAdapter.AdapterCallback {
 
     private lateinit var binding: FragmentProfileBinding
-    private lateinit var viewModel: FavoritesViewModel
+    private lateinit var viewModel: ProfileViewModel
     private lateinit var favoritesAdapter: ShowsAdapter
     private lateinit var watchingAdapter: ShowsAdapter
 
@@ -43,7 +40,7 @@ class ProfileFragment : Fragment(), ShowsAdapter.AdapterCallback {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = ViewModelProvider(requireActivity())[FavoritesViewModel::class.java]
+        viewModel = ViewModelProvider(requireActivity())[ProfileViewModel::class.java]
         favoritesAdapter = ShowsAdapter(this)
         watchingAdapter = ShowsAdapter(this)
         binding.watching.adapter = watchingAdapter

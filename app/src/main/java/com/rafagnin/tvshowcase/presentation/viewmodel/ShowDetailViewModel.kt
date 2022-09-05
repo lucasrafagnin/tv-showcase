@@ -42,10 +42,12 @@ class ShowDetailViewModel @Inject constructor(
     }
 
     fun getShowDetail(id: Long) = viewModelScope.launch(Dispatchers.IO) {
-        when (val result = getShowDetail.invoke(id)) {
-            is Resource.Success -> state.value = Loaded(result.data)
-            is Resource.Loading -> state.value = Loading
-            is Resource.Error -> state.value = Error
+        getShowDetail.invoke(id).collect {
+            when (it) {
+                is Resource.Success -> state.value = Loaded(it.data)
+                is Resource.Loading -> state.value = Loading
+                is Resource.Error -> state.value = Error
+            }
         }
     }
 
