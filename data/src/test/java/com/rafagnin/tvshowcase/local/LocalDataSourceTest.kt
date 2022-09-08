@@ -5,11 +5,11 @@ import com.rafagnin.tvshowcase.data.local.ShowDao
 import com.rafagnin.tvshowcase.data.model.LocalShowModel
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
-import io.mockk.verify
-import io.mockk.mockk
-import io.mockk.just
-import io.mockk.runs
 import io.mockk.impl.annotations.MockK
+import io.mockk.just
+import io.mockk.mockk
+import io.mockk.runs
+import io.mockk.verify
 import kotlinx.coroutines.flow.emptyFlow
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
