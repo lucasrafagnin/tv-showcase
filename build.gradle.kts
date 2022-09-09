@@ -14,12 +14,14 @@ buildscript {
         classpath(libs.kotlin)
         classpath(libs.navigationArgs)
         classpath(libs.hiltGradle)
+        classpath(libs.jacoco)
     }
 }
 
 allprojects {
 
     apply(plugin = "org.jlleitschuh.gradle.ktlint")
+    apply(plugin = "jacoco")
 
     repositories {
         google()
