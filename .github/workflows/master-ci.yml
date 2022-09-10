@@ -7,7 +7,7 @@ on:
     branches: [ "master" ]
 
 jobs:
-  build:
+  job1:
     name: Build project
     runs-on: ubuntu-latest
 
@@ -25,3 +25,26 @@ jobs:
 
       - name: Run unit tests
         run: bash ./gradlew test --stacktrace
+
+  job2:
+    needs: job1
+    name: Test coverage
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Generate report
+        uses: actions/upload-artifact@v2
+        with:
+          name: report
+          path: app/build/reports/coverage/debug
+
+      - name: Download report
+        uses: actions/download-artifact@v2
+        with:
+          name: report
+          path: app/build/reports/coverage/debug
+
+      - name: Upload report
+        uses: codecov/codecov-action@v2
+        with:
+          files: "app/build/reports/coverage/debug/report.xml"
