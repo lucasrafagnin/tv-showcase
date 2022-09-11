@@ -27,34 +27,53 @@ jobs:
         run: ./gradlew test --stacktrace
   job2:
     name: Test coverage
-    needs: job1
+    #needs: job1
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout project
-        uses: actions/checkout@v1
+      - uses: actions/checkout@v2
+      - name: Set up JDK 1.8
+      uses: actions/setup-java@v1
+      with:
+        java-version: 1.8
+        - name: Run Coverage
+          run: |
+            chmod +x gradlew
+            ./gradlew testCoverage
 
-      - name: Set up JDK
-        uses: actions/setup-java@v1
-        with:
-          java-version: 11
+        - name: Add coverage to PR
+          id: jacoco
+          uses: madrapps/jacoco-report@v1.3
+          with:
+            paths: ${{ github.workspace }}/build/reports/jacoco/testCoverage/testCoverage.xml
+            token: ${{ secrets.GITHUB_TOKEN }}
+            min-coverage-overall: 40
+            min-coverage-changed-files: 60
 
-      - name: Run jacoco
-        run: ./gradlew testDebugUnitTest
-
-      - name: Generate report
-        uses: actions/upload-artifact@v2
-        with:
-          name: report
-          path: app/build/reports/coverage/debug
-
-      - name: Download report
-        uses: actions/download-artifact@v2
-        with:
-          name: report
-          path: app/build/reports/coverage/debug
-
-      - name: Upload report
-        uses: codecov/codecov-action@v2
-        with:
-          files: "app/build/reports/coverage/debug/report.xml"
+#      - name: Checkout project
+#        uses: actions/checkout@v1
+#
+#      - name: Set up JDK
+#        uses: actions/setup-java@v1
+#        with:
+#          java-version: 11
+#
+#      - name: Run jacoco
+#        run: ./gradlew testDebugUnitTest
+#
+#      - name: Generate report
+#        uses: actions/upload-artifact@v2
+#        with:
+#          name: report
+#          path: app/build/reports/coverage/debug
+#
+#      - name: Download report
+#        uses: actions/download-artifact@v2
+#        with:
+#          name: report
+#          path: app/build/reports/coverage/debug
+#
+#      - name: Upload report
+#        uses: codecov/codecov-action@v2
+#        with:
+#          files: "app/build/reports/coverage/debug/report.xml"
