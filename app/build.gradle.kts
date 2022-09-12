@@ -1,3 +1,5 @@
+apply(from = "../jacoco/modules.gradle")
+
 plugins {
     id("com.android.application")
     id("dagger.hilt.android.plugin")
@@ -31,6 +33,7 @@ android {
             )
         }
         getByName("debug") {
+            isTestCoverageEnabled = true
             isMinifyEnabled = false
             isShrinkResources = false
         }
