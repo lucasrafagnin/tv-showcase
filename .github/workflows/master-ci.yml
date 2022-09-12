@@ -42,18 +42,6 @@ jobs:
       - name: Run jacoco
         run: ./gradlew jacocoTestReport
 
-      - name: Generate report
-        uses: actions/upload-artifact@v2
-        with:
-          name: report
-          path: app/build/reports/coverage/debug
-
-      - name: Download report
-        uses: actions/download-artifact@v2
-        with:
-          name: report
-          path: app/build/reports/coverage/debug
-
       - name: Upload report
         uses: codecov/codecov-action@v2
         with:
