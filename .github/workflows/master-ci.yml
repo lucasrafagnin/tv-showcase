@@ -44,19 +44,13 @@ jobs:
       - name: Combine jacoco reports
         run: ./gradlew allDebugCoverage
 
-      - name: generate report (Todo)
-        uses: actions/upload-artifact@v2
-        with:
-          name: report
-          path: build/reports/jacoco/allDebugCoverage
-
-      - name: Download Test Reports Folder (Todo)
+      - name: Download reports folder
         uses: actions/download-artifact@v2
         with:
           name: report
           path: build/reports/jacoco/allDebugCoverage
 
-      - name: Upload Test Report (Todo)
+      - name: Upload report file to codecov
         uses: codecov/codecov-action@v2
         with:
           files: "build/reports/jacoco/allDebugCoverage/allDebugCoverage.xml"
