@@ -8,7 +8,7 @@ plugins {
 }
 
 val jacocoTestReport by tasks.creating(JacocoReport::class.java) {
-    dependsOn("testDebugUnitTest", "createDebugCoverageReport")
+    dependsOn("testDebugUnitTest")
     reports {
         xml.required.set(true)
         html.required.set(true)
@@ -16,6 +16,7 @@ val jacocoTestReport by tasks.creating(JacocoReport::class.java) {
 
     val fileFilter = listOf(
         "**/R.class",
+        "**/Activity.class",
         "**/R$*.class",
         "**/BuildConfig.*",
         "**/Manifest*.*",
