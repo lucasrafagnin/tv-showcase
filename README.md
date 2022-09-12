@@ -5,6 +5,7 @@
 <p align="center">
   <a href="https://github.com/lucasrafagnin/tv-showcase/actions"><img src="https://github.com/lucasrafagnin/tv-showcase/actions/workflows/master-ci.yml/badge.svg"/></a>
   <a href="https://www.codacy.com/gh/lucasrafagnin/tv-showcase/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=lucasrafagnin/tv-showcase&amp;utm_campaign=Badge_Grade"><img alt="Google" src="https://app.codacy.com/project/badge/Grade/b84ef180a6cd423fb94861a227db5927"/></a>
+  <a href="https://codecov.io/gh/lucasrafagnin/tv-showcase"><img src="https://codecov.io/gh/lucasrafagnin/tv-showcase/branch/master/graph/badge.svg?token=Y7P0LI9PUO"/></a>
 </p>
 
 <p align="center">
