@@ -1,3 +1,5 @@
+apply(from = "../jacoco/modules.gradle")
+
 plugins {
     id("com.android.library")
     id("dagger.hilt.android.plugin")

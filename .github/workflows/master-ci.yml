@@ -27,7 +27,6 @@ jobs:
         run: ./gradlew test --stacktrace
   job2:
     name: Test coverage
-    #needs: job1
     runs-on: ubuntu-latest
 
     steps:
@@ -39,10 +38,25 @@ jobs:
         with:
           java-version: 11
 
-      - name: Run jacoco
-        run: ./gradlew jacocoTestReport
+      - name: Run jacoco on all modules
+        run: ./gradlew debugCoverage
 
-      - name: Upload report
+      - name: Combine jacoco reports
+        run: ./gradlew allDebugCoverage
+
+      - name: generate report (Todo)
+        uses: actions/upload-artifact@v2
+        with:
+          name: report
+          path: build/reports/jacoco/allDebugCoverage
+
+      - name: Download Test Reports Folder (Todo)
+        uses: actions/download-artifact@v2
+        with:
+          name: report
+          path: build/reports/jacoco/allDebugCoverage
+
+      - name: Upload Test Report (Todo)
         uses: codecov/codecov-action@v2
         with:
-          files: "app/build/reports/coverage/debug/report.xml"
+          files: "build/reports/jacoco/allDebugCoverage/allDebugCoverage.xml"

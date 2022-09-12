@@ -1,3 +1,5 @@
+apply(from = "jacoco/project.gradle")
+
 plugins {
     id("org.jlleitschuh.gradle.ktlint") version "10.3.0"
 }
