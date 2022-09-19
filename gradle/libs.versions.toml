@@ -20,7 +20,7 @@ navigation = "2.5.0"
 paging = "3.1.1"
 retrofit = "2.9.0"
 room = "2.4.2"
-viewModel = "2.5.0"
+viewModel = "2.5.1"
 
 [libraries]
 appCompat = { module = "androidx.appcompat:appcompat", version.ref = "appCompat" }
