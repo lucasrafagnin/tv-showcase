@@ -5,6 +5,14 @@
     android:id="@+id/nav_graph"
     app:startDestination="@id/home_fragment">
 
+    <action
+        android:id="@+id/app_to_episode"
+        app:destination="@id/episode_fragment">
+        <argument
+            android:name="episode"
+            app:argType="com.rafagnin.tvshowcase.domain.model.EpisodeModel" />
+    </action>
+
     <fragment
         android:id="@+id/home_fragment"
         android:name="com.rafagnin.tvshowcase.presentation.fragment.HomeFragment"
@@ -36,12 +44,20 @@
     <fragment
         android:id="@+id/showdetail_fragment"
         android:name="com.rafagnin.tvshowcase.presentation.fragment.ShowDetailFragment"
-        android:label="@string/tab_favorites_title"
         tools:layout="@layout/fragment_show_detail">
         <argument
             android:name="show_id"
             android:defaultValue="0L"
             app:argType="long"
             app:nullable="false" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/episode_fragment"
+        android:name="com.rafagnin.tvshowcase.presentation.fragment.EpisodeFragment"
+        tools:layout="@layout/fragment_episode_detail">
+        <argument
+            android:name="episode"
+            app:argType="com.rafagnin.tvshowcase.domain.model.EpisodeModel" />
     </fragment>
 </navigation>

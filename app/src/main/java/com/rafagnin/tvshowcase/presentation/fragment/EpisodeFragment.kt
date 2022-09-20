@@ -1,42 +1,43 @@
-package com.rafagnin.tvshowcase.presentation.activity
+package com.rafagnin.tvshowcase.presentation.fragment
 
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.navArgs
 import coil.load
 import com.rafagnin.tvshowcase.R
-import com.rafagnin.tvshowcase.databinding.ActivityEpisodeDetailBinding
+import com.rafagnin.tvshowcase.databinding.FragmentEpisodeDetailBinding
 import com.rafagnin.tvshowcase.domain.model.EpisodeModel
 import com.rafagnin.tvshowcase.ext.show
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class EpisodeActivity : AppCompatActivity() {
+class EpisodeFragment : Fragment() {
 
-    companion object {
-        const val ID_EXTRA = "ID_EXTRA"
+    private val args: EpisodeFragmentArgs by navArgs()
+    private lateinit var binding: FragmentEpisodeDetailBinding
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        val binding = FragmentEpisodeDetailBinding.inflate(inflater, container, false)
+        this.binding = binding
+        return binding.root
     }
 
-    private lateinit var binding: ActivityEpisodeDetailBinding
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = ActivityEpisodeDetailBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
-        val episodeModel = intent.getSerializableExtra(ID_EXTRA) as EpisodeModel
-        setupView(episodeModel)
-        setToolbar()
-    }
-
-    override fun onSupportNavigateUp(): Boolean {
-        onBackPressed()
-        return true
+        setupView(args.episode)
     }
 
     private fun setupView(episode: EpisodeModel?) = episode?.let {
-        binding.toolbar.title = episode.show?.name
         binding.banner.load(episode.image ?: episode.show?.image)
         binding.name.text = episode.name
         binding.date.text = episode.airdate
@@ -56,11 +57,5 @@ class EpisodeActivity : AppCompatActivity() {
     private fun openSite(url: String) {
         val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
         startActivity(browserIntent)
-    }
-
-    private fun setToolbar() {
-        setSupportActionBar(binding.toolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.setDisplayShowHomeEnabled(true)
     }
 }

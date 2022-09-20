@@ -10,9 +10,11 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import coil.load
 import coil.transform.CircleCropTransformation
 import coil.transform.RoundedCornersTransformation
+import com.rafagnin.tvshowcase.NavGraphDirections
 import com.rafagnin.tvshowcase.R
 import com.rafagnin.tvshowcase.databinding.FragmentShowDetailBinding
 import com.rafagnin.tvshowcase.domain.model.CharacterModel
@@ -22,7 +24,6 @@ import com.rafagnin.tvshowcase.ext.gone
 import com.rafagnin.tvshowcase.ext.show
 import com.rafagnin.tvshowcase.presentation.action.ShowDetailAction
 import com.rafagnin.tvshowcase.presentation.activity.CharacterActivity
-import com.rafagnin.tvshowcase.presentation.activity.EpisodeActivity
 import com.rafagnin.tvshowcase.presentation.adapter.SeasonAdapter
 import com.rafagnin.tvshowcase.presentation.state.ShowDetailState
 import com.rafagnin.tvshowcase.presentation.state.ShowDetailState.Error
@@ -136,9 +137,9 @@ class ShowDetailFragment : Fragment() {
     }
 
     private fun openEpisode(episode: EpisodeModel) {
-        val intent = Intent(requireContext(), EpisodeActivity::class.java)
-        intent.putExtra(ID_EXTRA, episode)
-        startActivity(intent)
+        findNavController().navigate(
+            NavGraphDirections.appToEpisode(episode)
+        )
     }
 
     private fun setSeasons(seasons: Map<String, List<EpisodeModel>>?) = seasons?.run {
