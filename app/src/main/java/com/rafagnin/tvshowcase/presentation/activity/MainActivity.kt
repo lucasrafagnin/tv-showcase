@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
+import androidx.core.view.isVisible
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
@@ -57,12 +58,16 @@ class MainActivity : AppCompatActivity() {
             setOf(
                 R.id.home_fragment,
                 R.id.schedule_fragment,
-                R.id.favorites_fragment,
+                R.id.favorites_fragment
             )
         )
 
         binding.toolbar.setupWithNavController(navHost.navController, appBarConfiguration)
         binding.bottomNavigation.setupWithNavController(navHost.navController)
+        navHost.navController.addOnDestinationChangedListener { _, destination, _ ->
+            binding.bottomNavigation.isVisible =
+                appBarConfiguration.topLevelDestinations.contains(destination.id)
+        }
         setSupportActionBar(binding.toolbar)
     }
 

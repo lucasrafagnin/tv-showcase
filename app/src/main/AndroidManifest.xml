@@ -28,10 +28,6 @@
                 android:resource="@xml/shortcuts" />
         </activity>
         <activity
-            android:name=".presentation.activity.ShowDetailActivity"
-            android:parentActivityName=".presentation.activity.MainActivity"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".presentation.activity.EpisodeActivity"
             android:screenOrientation="portrait" />
         <activity

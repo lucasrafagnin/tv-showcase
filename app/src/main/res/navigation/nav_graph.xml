@@ -9,7 +9,17 @@
         android:id="@+id/home_fragment"
         android:name="com.rafagnin.tvshowcase.presentation.fragment.HomeFragment"
         android:label="@string/tab_home_title"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home">
+
+        <action
+            android:id="@+id/home_to_showdetail"
+            app:destination="@id/showdetail_fragment">
+            <argument
+                android:name="show_id"
+                android:defaultValue="0L"
+                app:argType="long" />
+        </action>
+    </fragment>
 
     <fragment
         android:id="@+id/schedule_fragment"
@@ -18,8 +28,20 @@
         tools:layout="@layout/fragment_schedule" />
 
     <fragment
-         android:id="@+id/favorites_fragment"
+        android:id="@+id/favorites_fragment"
         android:name="com.rafagnin.tvshowcase.presentation.fragment.FavoritesFragment"
         android:label="@string/tab_favorites_title"
         tools:layout="@layout/fragment_favorites" />
+
+    <fragment
+        android:id="@+id/showdetail_fragment"
+        android:name="com.rafagnin.tvshowcase.presentation.fragment.ShowDetailFragment"
+        android:label="@string/tab_favorites_title"
+        tools:layout="@layout/fragment_show_detail">
+        <argument
+            android:name="show_id"
+            android:defaultValue="0L"
+            app:argType="long"
+            app:nullable="false" />
+    </fragment>
 </navigation>

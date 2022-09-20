@@ -12,6 +12,7 @@ import com.rafagnin.tvshowcase.ext.gone
 import com.rafagnin.tvshowcase.ext.show
 import com.rafagnin.tvshowcase.presentation.action.SearchAction
 import com.rafagnin.tvshowcase.presentation.adapter.ShowsAdapter
+import com.rafagnin.tvshowcase.presentation.fragment.ShowDetailFragment
 import com.rafagnin.tvshowcase.presentation.state.SearchState
 import com.rafagnin.tvshowcase.presentation.state.SearchState.Error
 import com.rafagnin.tvshowcase.presentation.state.SearchState.Loading
@@ -80,8 +81,8 @@ class SearchActivity : AppCompatActivity(), ShowsAdapter.AdapterCallback {
     }
 
     private fun openDetailScreen(id: Long) {
-        val intent = Intent(this, ShowDetailActivity::class.java)
-        intent.putExtra(ShowDetailActivity.ID_EXTRA, id)
-        startActivity(intent)
+//        val intent = Intent(this, ShowDetailFragment::class.java)
+//        intent.putExtra(ShowDetailFragment.ID_EXTRA, id)
+//        startActivity(intent)
     }
 }
