@@ -28,9 +28,6 @@
                 android:resource="@xml/shortcuts" />
         </activity>
         <activity
-            android:name=".presentation.activity.CharacterActivity"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".presentation.activity.SearchActivity"
             android:exported="true"
             android:launchMode="singleTop"

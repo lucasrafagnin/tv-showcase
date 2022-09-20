@@ -1,6 +1,5 @@
 package com.rafagnin.tvshowcase.presentation.fragment
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -23,7 +22,6 @@ import com.rafagnin.tvshowcase.domain.model.ShowDetailModel
 import com.rafagnin.tvshowcase.ext.gone
 import com.rafagnin.tvshowcase.ext.show
 import com.rafagnin.tvshowcase.presentation.action.ShowDetailAction
-import com.rafagnin.tvshowcase.presentation.activity.CharacterActivity
 import com.rafagnin.tvshowcase.presentation.adapter.SeasonAdapter
 import com.rafagnin.tvshowcase.presentation.state.ShowDetailState
 import com.rafagnin.tvshowcase.presentation.state.ShowDetailState.Error
@@ -35,10 +33,6 @@ import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class ShowDetailFragment : Fragment() {
-
-    companion object {
-        const val ID_EXTRA = "ID_EXTRA"
-    }
 
     private lateinit var binding: FragmentShowDetailBinding
     private lateinit var viewModel: ShowDetailViewModel
@@ -131,9 +125,9 @@ class ShowDetailFragment : Fragment() {
     }
 
     private fun openCharacter(character: CharacterModel) {
-        val intent = Intent(requireContext(), CharacterActivity::class.java)
-        intent.putExtra(ID_EXTRA, character)
-        startActivity(intent)
+        findNavController().navigate(
+            ShowDetailFragmentDirections.showdetailToCharacter(character)
+        )
     }
 
     private fun openEpisode(episode: EpisodeModel) {

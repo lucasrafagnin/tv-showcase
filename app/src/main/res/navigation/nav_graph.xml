@@ -13,21 +13,20 @@
             app:argType="com.rafagnin.tvshowcase.domain.model.EpisodeModel" />
     </action>
 
+    <action
+        android:id="@+id/app_to_showdetail"
+        app:destination="@id/showdetail_fragment">
+        <argument
+            android:name="show_id"
+            android:defaultValue="0L"
+            app:argType="long" />
+    </action>
+
     <fragment
         android:id="@+id/home_fragment"
         android:name="com.rafagnin.tvshowcase.presentation.fragment.HomeFragment"
         android:label="@string/tab_home_title"
-        tools:layout="@layout/fragment_home">
-
-        <action
-            android:id="@+id/home_to_showdetail"
-            app:destination="@id/showdetail_fragment">
-            <argument
-                android:name="show_id"
-                android:defaultValue="0L"
-                app:argType="long" />
-        </action>
-    </fragment>
+        tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/schedule_fragment"
@@ -50,6 +49,13 @@
             android:defaultValue="0L"
             app:argType="long"
             app:nullable="false" />
+        <action
+            android:id="@+id/showdetail_to_character"
+            app:destination="@id/character_fragment">
+            <argument
+                android:name="character"
+                app:argType="com.rafagnin.tvshowcase.domain.model.CharacterModel"  />
+        </action>
     </fragment>
 
     <fragment
@@ -59,5 +65,14 @@
         <argument
             android:name="episode"
             app:argType="com.rafagnin.tvshowcase.domain.model.EpisodeModel" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/character_fragment"
+        android:name="com.rafagnin.tvshowcase.presentation.fragment.CharacterFragment"
+        tools:layout="@layout/fragment_character_detail">
+        <argument
+            android:name="character"
+            app:argType="com.rafagnin.tvshowcase.domain.model.CharacterModel" />
     </fragment>
 </navigation>

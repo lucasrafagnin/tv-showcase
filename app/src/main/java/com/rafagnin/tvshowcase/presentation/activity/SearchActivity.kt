@@ -12,7 +12,6 @@ import com.rafagnin.tvshowcase.ext.gone
 import com.rafagnin.tvshowcase.ext.show
 import com.rafagnin.tvshowcase.presentation.action.SearchAction
 import com.rafagnin.tvshowcase.presentation.adapter.ShowsAdapter
-import com.rafagnin.tvshowcase.presentation.fragment.ShowDetailFragment
 import com.rafagnin.tvshowcase.presentation.state.SearchState
 import com.rafagnin.tvshowcase.presentation.state.SearchState.Error
 import com.rafagnin.tvshowcase.presentation.state.SearchState.Loading
@@ -63,7 +62,9 @@ class SearchActivity : AppCompatActivity(), ShowsAdapter.AdapterCallback {
 
     private fun render(state: SearchState) {
         binding.list.run { if (state is ShowsLoaded) show() else gone() }
-        binding.toolbar.run { if (state is ShowsLoaded) title = getString(R.string.search_result, state.query) }
+        binding.toolbar.run {
+            if (state is ShowsLoaded) title = getString(R.string.search_result, state.query)
+        }
         binding.loading.run { if (state is Loading) show() else gone() }
         binding.errorState.root.run { if (state is Error) show() else gone() }
 

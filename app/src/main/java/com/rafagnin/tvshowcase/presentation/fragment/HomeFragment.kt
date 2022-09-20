@@ -14,6 +14,7 @@ import androidx.paging.LoadState.Error
 import androidx.paging.LoadState.Loading
 import androidx.paging.LoadState.NotLoading
 import androidx.paging.cachedIn
+import com.rafagnin.tvshowcase.NavGraphDirections
 import com.rafagnin.tvshowcase.databinding.FragmentHomeBinding
 import com.rafagnin.tvshowcase.ext.gone
 import com.rafagnin.tvshowcase.ext.show
@@ -72,9 +73,7 @@ class HomeFragment : Fragment(), ShowsPagingAdapter.AdapterCallback {
 
     private fun openDetailScreen(id: Long) {
         findNavController().navigate(
-            HomeFragmentDirections.homeToShowdetail(
-                showId = id
-            )
+            NavGraphDirections.appToShowdetail(id)
         )
     }
 
