@@ -45,7 +45,7 @@ jobs:
         run: ./gradlew allDebugCoverage
 
       - name: Upload report
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: report
           path: build/reports/jacoco/allDebugCoverage
