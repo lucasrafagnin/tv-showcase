@@ -51,7 +51,7 @@ jobs:
           path: build/reports/jacoco/allDebugCoverage
 
       - name: Download test reports
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
           name: report
           path: build/reports/jacoco/allDebugCoverage
