@@ -11,11 +11,13 @@ import androidx.core.view.isVisible
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
+import com.rafagnin.tvshowcase.NavGraphDirections
 import com.rafagnin.tvshowcase.R
 import com.rafagnin.tvshowcase.databinding.ActivityMainBinding
 import com.rafagnin.tvshowcase.presentation.fragment.FavoritesFragment
 import com.rafagnin.tvshowcase.presentation.fragment.HomeFragment
 import com.rafagnin.tvshowcase.presentation.fragment.ScheduleFragment
+import com.rafagnin.tvshowcase.presentation.fragment.ShowDetailFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -71,12 +73,27 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(binding.toolbar)
     }
 
-    private fun checkShortcut() = when (intent?.action) {
-        HomeFragment.SHORTCUT -> R.id.home_fragment
-        ScheduleFragment.SHORTCUT -> R.id.schedule_fragment
-        FavoritesFragment.SHORTCUT -> R.id.favorites_fragment
-        else -> null
-    }?.also {
-        binding.bottomNavigation.selectedItemId = it
+    private fun checkShortcut() = with(intent?.action) {
+        when (this) {
+            HomeFragment.SHORTCUT -> R.id.home_fragment
+            ScheduleFragment.SHORTCUT -> R.id.schedule_fragment
+            FavoritesFragment.SHORTCUT -> R.id.favorites_fragment
+            else -> null
+        }?.also {
+            binding.bottomNavigation.selectedItemId = it
+        } ?: run {
+            if (this == ShowDetailFragment.SHORTCUT) {
+                openShowDetail(intent.getLongExtra(ShowDetailFragment.SHOW_ID, 0L))
+            }
+        }
+    }
+
+    private fun openShowDetail(id: Long) {
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.fragment) as NavHostFragment
+        val navController = navHostFragment.navController
+        navController.navigate(
+            NavGraphDirections.appToShowdetail(id)
+        )
     }
 }

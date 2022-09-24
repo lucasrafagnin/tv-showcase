@@ -147,4 +147,9 @@ class ShowDetailFragment : Fragment() {
             false
         }
     }
+
+    companion object {
+        const val SHORTCUT = "com.rafagnin.tvshowcase.showdetail"
+        const val SHOW_ID = "show_id"
+    }
 }

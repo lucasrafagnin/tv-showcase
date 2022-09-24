@@ -12,6 +12,7 @@ import com.rafagnin.tvshowcase.ext.gone
 import com.rafagnin.tvshowcase.ext.show
 import com.rafagnin.tvshowcase.presentation.action.SearchAction
 import com.rafagnin.tvshowcase.presentation.adapter.ShowsAdapter
+import com.rafagnin.tvshowcase.presentation.fragment.ShowDetailFragment
 import com.rafagnin.tvshowcase.presentation.state.SearchState
 import com.rafagnin.tvshowcase.presentation.state.SearchState.Error
 import com.rafagnin.tvshowcase.presentation.state.SearchState.Loading
@@ -47,7 +48,12 @@ class SearchActivity : AppCompatActivity(), ShowsAdapter.AdapterCallback {
         }
     }
 
-    override fun onShowClick(id: Long) = openDetailScreen(id)
+    override fun onShowClick(id: Long) {
+        val intent = Intent(this, MainActivity::class.java)
+        intent.action = ShowDetailFragment.SHORTCUT
+        intent.putExtra(ShowDetailFragment.SHOW_ID, id)
+        startActivity(intent)
+    }
 
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
@@ -79,11 +85,5 @@ class SearchActivity : AppCompatActivity(), ShowsAdapter.AdapterCallback {
                 }
             }
         }
-    }
-
-    private fun openDetailScreen(id: Long) {
-//        val intent = Intent(this, ShowDetailFragment::class.java)
-//        intent.putExtra(ShowDetailFragment.ID_EXTRA, id)
-//        startActivity(intent)
     }
 }
