@@ -10,6 +10,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.rafagnin.tvshowcase.NavGraphDirections
 import com.rafagnin.tvshowcase.R
@@ -34,9 +35,20 @@ class MainActivity : AppCompatActivity() {
         checkShortcut()
     }
 
-    override fun onBackPressed() = with(binding.bottomNavigation) {
-        if (selectedItemId == R.id.home_fragment) finish()
-        else selectedItemId = R.id.home_fragment
+    override fun onBackPressed() {
+        with(binding.bottomNavigation) {
+            if (isVisible) {
+                if (selectedItemId == R.id.home_fragment) finish()
+                else selectedItemId = R.id.home_fragment
+            } else {
+                onSupportNavigateUp()
+            }
+        }
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        val navHost = (supportFragmentManager.findFragmentById(R.id.fragment) as NavHostFragment)
+        return navHost.navController.navigateUp() || super.onSupportNavigateUp()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -71,6 +83,7 @@ class MainActivity : AppCompatActivity() {
                 appBarConfiguration.topLevelDestinations.contains(destination.id)
         }
         setSupportActionBar(binding.toolbar)
+        setupActionBarWithNavController(navHost.navController, appBarConfiguration)
     }
 
     private fun checkShortcut() = with(intent?.action) {

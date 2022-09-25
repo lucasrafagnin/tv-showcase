@@ -64,7 +64,7 @@ class ScheduleFragment : Fragment(), ScheduleAdapter.AdapterCallback {
 
     private fun openDetailScreen(model: EpisodeModel) {
         findNavController().navigate(
-            NavGraphDirections.appToEpisode(model)
+            ScheduleFragmentDirections.scheduleToEpisode(model)
         )
     }
 

@@ -6,14 +6,6 @@
     app:startDestination="@id/home_fragment">
 
     <action
-        android:id="@+id/app_to_episode"
-        app:destination="@id/episode_fragment">
-        <argument
-            android:name="episode"
-            app:argType="com.rafagnin.tvshowcase.domain.model.EpisodeModel" />
-    </action>
-
-    <action
         android:id="@+id/app_to_showdetail"
         app:destination="@id/showdetail_fragment">
         <argument
@@ -32,7 +24,17 @@
         android:id="@+id/schedule_fragment"
         android:name="com.rafagnin.tvshowcase.presentation.fragment.ScheduleFragment"
         android:label="@string/tab_schedule_title"
-        tools:layout="@layout/fragment_schedule" />
+        tools:layout="@layout/fragment_schedule">
+
+        <action
+            android:id="@+id/schedule_to_episode"
+            app:destination="@id/episode_fragment"
+            app:popUpTo="@id/schedule_fragment">
+            <argument
+                android:name="episode"
+                app:argType="com.rafagnin.tvshowcase.domain.model.EpisodeModel" />
+        </action>
+    </fragment>
 
     <fragment
         android:id="@+id/favorites_fragment"
@@ -50,8 +52,17 @@
             app:argType="long"
             app:nullable="false" />
         <action
+            android:id="@+id/showdetail_to_episode"
+            app:destination="@id/episode_fragment"
+            app:popUpTo="@id/showdetail_fragment">
+            <argument
+                android:name="episode"
+                app:argType="com.rafagnin.tvshowcase.domain.model.EpisodeModel" />
+        </action>
+        <action
             android:id="@+id/showdetail_to_character"
-            app:destination="@id/character_fragment">
+            app:destination="@id/character_fragment"
+            app:popUpTo="@+id/showdetail_fragment">
             <argument
                 android:name="character"
                 app:argType="com.rafagnin.tvshowcase.domain.model.CharacterModel"  />

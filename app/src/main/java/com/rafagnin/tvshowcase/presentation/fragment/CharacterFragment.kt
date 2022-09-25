@@ -11,6 +11,7 @@ import androidx.navigation.fragment.navArgs
 import coil.load
 import com.rafagnin.tvshowcase.databinding.FragmentCharacterDetailBinding
 import com.rafagnin.tvshowcase.domain.model.CharacterModel
+import com.rafagnin.tvshowcase.presentation.activity.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -35,6 +36,7 @@ class CharacterFragment : Fragment() {
     }
 
     private fun setupView(model: CharacterModel?) = model?.let {
+        (requireActivity() as MainActivity).supportActionBar?.title = model.name
         binding.poster.load(model.image)
         binding.birtday.text = model.birthday
         binding.country.text = model.country
