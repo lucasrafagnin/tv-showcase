@@ -9,12 +9,10 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import coil.load
 import coil.transform.CircleCropTransformation
 import coil.transform.RoundedCornersTransformation
-import com.rafagnin.tvshowcase.NavGraphDirections
 import com.rafagnin.tvshowcase.R
 import com.rafagnin.tvshowcase.databinding.FragmentShowDetailBinding
 import com.rafagnin.tvshowcase.domain.model.CharacterModel

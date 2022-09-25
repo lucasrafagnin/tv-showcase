@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import com.rafagnin.tvshowcase.NavGraphDirections
 import com.rafagnin.tvshowcase.databinding.FragmentScheduleBinding
 import com.rafagnin.tvshowcase.domain.model.EpisodeModel
 import com.rafagnin.tvshowcase.ext.gone
