@@ -1,5 +1,6 @@
 package com.rafagnin.tvshowcase.presentation.fragment
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -107,6 +108,7 @@ class ShowDetailFragment : Fragment() {
         binding.description.setOnClickListener { binding.description.toggle() }
     }
 
+    @SuppressLint("NewApi")
     private fun setCast(characters: List<CharacterModel>?) {
         binding.characters.removeAllViews()
         characters?.forEach { character ->
