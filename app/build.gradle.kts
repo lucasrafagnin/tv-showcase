@@ -2,10 +2,10 @@ apply(from = "../jacoco/modules.gradle")
 
 plugins {
     id("com.android.application")
-    id("dagger.hilt.android.plugin")
-    id("androidx.navigation.safeargs")
     kotlin("android")
     kotlin("kapt")
+    id("dagger.hilt.android.plugin")
+    id("androidx.navigation.safeargs.kotlin")
 }
 
 android {

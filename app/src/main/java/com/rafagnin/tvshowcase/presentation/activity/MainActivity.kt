@@ -7,14 +7,18 @@ import android.os.Bundle
 import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
+import androidx.core.view.isVisible
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.rafagnin.tvshowcase.NavGraphDirections
 import com.rafagnin.tvshowcase.R
 import com.rafagnin.tvshowcase.databinding.ActivityMainBinding
 import com.rafagnin.tvshowcase.presentation.fragment.FavoritesFragment
 import com.rafagnin.tvshowcase.presentation.fragment.HomeFragment
 import com.rafagnin.tvshowcase.presentation.fragment.ScheduleFragment
+import com.rafagnin.tvshowcase.presentation.fragment.ShowDetailFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -31,9 +35,20 @@ class MainActivity : AppCompatActivity() {
         checkShortcut()
     }
 
-    override fun onBackPressed() = with(binding.bottomNavigation) {
-        if (selectedItemId == R.id.home_fragment) finish()
-        else selectedItemId = R.id.home_fragment
+    override fun onBackPressed() {
+        with(binding.bottomNavigation) {
+            if (isVisible) {
+                if (selectedItemId == R.id.home_fragment) finish()
+                else selectedItemId = R.id.home_fragment
+            } else {
+                onSupportNavigateUp()
+            }
+        }
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        val navHost = (supportFragmentManager.findFragmentById(R.id.fragment) as NavHostFragment)
+        return navHost.navController.navigateUp() || super.onSupportNavigateUp()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -57,21 +72,41 @@ class MainActivity : AppCompatActivity() {
             setOf(
                 R.id.home_fragment,
                 R.id.schedule_fragment,
-                R.id.favorites_fragment,
+                R.id.favorites_fragment
             )
         )
 
         binding.toolbar.setupWithNavController(navHost.navController, appBarConfiguration)
         binding.bottomNavigation.setupWithNavController(navHost.navController)
+        navHost.navController.addOnDestinationChangedListener { _, destination, _ ->
+            binding.bottomNavigation.isVisible =
+                appBarConfiguration.topLevelDestinations.contains(destination.id)
+        }
         setSupportActionBar(binding.toolbar)
+        setupActionBarWithNavController(navHost.navController, appBarConfiguration)
     }
 
-    private fun checkShortcut() = when (intent?.action) {
-        HomeFragment.SHORTCUT -> R.id.home_fragment
-        ScheduleFragment.SHORTCUT -> R.id.schedule_fragment
-        FavoritesFragment.SHORTCUT -> R.id.favorites_fragment
-        else -> null
-    }?.also {
-        binding.bottomNavigation.selectedItemId = it
+    private fun checkShortcut() = with(intent?.action) {
+        when (this) {
+            HomeFragment.SHORTCUT -> R.id.home_fragment
+            ScheduleFragment.SHORTCUT -> R.id.schedule_fragment
+            FavoritesFragment.SHORTCUT -> R.id.favorites_fragment
+            else -> null
+        }?.also {
+            binding.bottomNavigation.selectedItemId = it
+        } ?: run {
+            if (this == ShowDetailFragment.SHORTCUT) {
+                openShowDetail(intent.getLongExtra(ShowDetailFragment.SHOW_ID, 0L))
+            }
+        }
+    }
+
+    private fun openShowDetail(id: Long) {
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.fragment) as NavHostFragment
+        val navController = navHostFragment.navController
+        navController.navigate(
+            NavGraphDirections.appToShowdetail(id)
+        )
     }
 }

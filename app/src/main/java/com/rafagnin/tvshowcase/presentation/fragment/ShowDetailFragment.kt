@@ -1,24 +1,28 @@
-package com.rafagnin.tvshowcase.presentation.activity
+package com.rafagnin.tvshowcase.presentation.fragment
 
-import android.content.Intent
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import coil.load
 import coil.transform.CircleCropTransformation
 import coil.transform.RoundedCornersTransformation
 import com.rafagnin.tvshowcase.R
-import com.rafagnin.tvshowcase.databinding.ActivityShowDetailBinding
+import com.rafagnin.tvshowcase.databinding.FragmentShowDetailBinding
 import com.rafagnin.tvshowcase.domain.model.CharacterModel
 import com.rafagnin.tvshowcase.domain.model.EpisodeModel
 import com.rafagnin.tvshowcase.domain.model.ShowDetailModel
 import com.rafagnin.tvshowcase.ext.gone
 import com.rafagnin.tvshowcase.ext.show
 import com.rafagnin.tvshowcase.presentation.action.ShowDetailAction
+import com.rafagnin.tvshowcase.presentation.activity.MainActivity
 import com.rafagnin.tvshowcase.presentation.adapter.SeasonAdapter
 import com.rafagnin.tvshowcase.presentation.state.ShowDetailState
 import com.rafagnin.tvshowcase.presentation.state.ShowDetailState.Error
@@ -29,23 +33,28 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class ShowDetailActivity : AppCompatActivity() {
+class ShowDetailFragment : Fragment() {
 
-    companion object {
-        const val ID_EXTRA = "ID_EXTRA"
-    }
-
-    private lateinit var binding: ActivityShowDetailBinding
+    private lateinit var binding: FragmentShowDetailBinding
     private lateinit var viewModel: ShowDetailViewModel
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = ActivityShowDetailBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        val binding = FragmentShowDetailBinding.inflate(inflater, container, false)
+        this.binding = binding
+        return binding.root
+    }
 
-        val detailId = intent.getLongExtra(ID_EXTRA, 0L)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(this)[ShowDetailViewModel::class.java]
+        val bundle = arguments ?: throw IllegalStateException("Show ID is required")
+        val detailId = ShowDetailFragmentArgs.fromBundle(bundle).showId
+
+        viewModel = ViewModelProvider(requireActivity())[ShowDetailViewModel::class.java]
         viewModel.getShowDetail(detailId)
         lifecycleScope.launchWhenCreated { viewModel._state.collect { render(it) } }
 
@@ -54,12 +63,6 @@ class ShowDetailActivity : AppCompatActivity() {
                 viewModel.actionFlow.emit(ShowDetailAction.Retry(detailId))
             }
         }
-        setToolbar()
-    }
-
-    override fun onSupportNavigateUp(): Boolean {
-        onBackPressed()
-        return true
     }
 
     private fun render(state: ShowDetailState) {
@@ -75,7 +78,7 @@ class ShowDetailActivity : AppCompatActivity() {
         binding.poster.load(it.image) {
             transformations(RoundedCornersTransformation(10f))
         }
-        binding.toolbar.title = it.name
+        (requireActivity() as MainActivity).supportActionBar?.title = show.name
         binding.genres.text = it.genres
         binding.rate.text = it.rating.toString()
         binding.status.text = it.status
@@ -105,10 +108,11 @@ class ShowDetailActivity : AppCompatActivity() {
         binding.description.setOnClickListener { binding.description.toggle() }
     }
 
+    @SuppressLint("NewApi")
     private fun setCast(characters: List<CharacterModel>?) {
         binding.characters.removeAllViews()
         characters?.forEach { character ->
-            val inflater = LayoutInflater.from(this@ShowDetailActivity)
+            val inflater = LayoutInflater.from(requireContext())
             val view = inflater.inflate(R.layout.item_character, binding.characters, false)
             val image = view.findViewById(R.id.profile) as ImageView
             val name = view.findViewById(R.id.name) as TextView
@@ -124,26 +128,20 @@ class ShowDetailActivity : AppCompatActivity() {
     }
 
     private fun openCharacter(character: CharacterModel) {
-        val intent = Intent(this, CharacterActivity::class.java)
-        intent.putExtra(ID_EXTRA, character)
-        startActivity(intent)
+        findNavController().navigate(
+            ShowDetailFragmentDirections.showdetailToCharacter(character)
+        )
     }
 
     private fun openEpisode(episode: EpisodeModel) {
-        val intent = Intent(this, EpisodeActivity::class.java)
-        intent.putExtra(ID_EXTRA, episode)
-        startActivity(intent)
-    }
-
-    private fun setToolbar() {
-        setSupportActionBar(binding.toolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.setDisplayShowHomeEnabled(true)
+        findNavController().navigate(
+            ShowDetailFragmentDirections.showdetailToEpisode(episode)
+        )
     }
 
     private fun setSeasons(seasons: Map<String, List<EpisodeModel>>?) = seasons?.run {
         val expandableListTitle = ArrayList(seasons.keys)
-        val expandableListAdapter = SeasonAdapter(this@ShowDetailActivity, expandableListTitle, seasons)
+        val expandableListAdapter = SeasonAdapter(requireContext(), expandableListTitle, seasons)
         binding.seasons.setAdapter(expandableListAdapter)
 
         binding.seasons.setOnChildClickListener { _, _, groupPosition, childPosition, _ ->
@@ -151,5 +149,10 @@ class ShowDetailActivity : AppCompatActivity() {
             episode?.let { openEpisode(it) }
             false
         }
+    }
+
+    companion object {
+        const val SHORTCUT = "com.rafagnin.tvshowcase.showdetail"
+        const val SHOW_ID = "show_id"
     }
 }

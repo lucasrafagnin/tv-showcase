@@ -1,6 +1,5 @@
 package com.rafagnin.tvshowcase.presentation.fragment
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,14 +8,16 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.viewModelScope
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState.Error
 import androidx.paging.LoadState.Loading
 import androidx.paging.LoadState.NotLoading
 import androidx.paging.cachedIn
+import com.rafagnin.tvshowcase.NavGraphDirections
 import com.rafagnin.tvshowcase.databinding.FragmentHomeBinding
 import com.rafagnin.tvshowcase.ext.gone
 import com.rafagnin.tvshowcase.ext.show
-import com.rafagnin.tvshowcase.presentation.activity.ShowDetailActivity
 import com.rafagnin.tvshowcase.presentation.adapter.ShowsPagingAdapter
 import com.rafagnin.tvshowcase.presentation.viewmodel.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -71,9 +72,9 @@ class HomeFragment : Fragment(), ShowsPagingAdapter.AdapterCallback {
     }
 
     private fun openDetailScreen(id: Long) {
-        val intent = Intent(context, ShowDetailActivity::class.java)
-        intent.putExtra(ShowDetailActivity.ID_EXTRA, id)
-        startActivity(intent)
+        findNavController().navigate(
+            NavGraphDirections.appToShowdetail(id)
+        )
     }
 
     companion object {

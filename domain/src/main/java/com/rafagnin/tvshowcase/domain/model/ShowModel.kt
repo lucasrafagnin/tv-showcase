@@ -5,5 +5,5 @@ import java.io.Serializable
 data class ShowModel(
     val id: Long,
     val name: String?,
-    val image: String?,
+    val image: String?
 ) : Serializable

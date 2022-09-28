@@ -1,6 +1,5 @@
 package com.rafagnin.tvshowcase.presentation.fragment
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,13 +7,13 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.rafagnin.tvshowcase.databinding.FragmentScheduleBinding
 import com.rafagnin.tvshowcase.domain.model.EpisodeModel
 import com.rafagnin.tvshowcase.ext.gone
 import com.rafagnin.tvshowcase.ext.show
 import com.rafagnin.tvshowcase.presentation.action.ScheduleAction
 import com.rafagnin.tvshowcase.presentation.action.ScheduleAction.Retry
-import com.rafagnin.tvshowcase.presentation.activity.EpisodeActivity
 import com.rafagnin.tvshowcase.presentation.adapter.ScheduleAdapter
 import com.rafagnin.tvshowcase.presentation.state.ScheduleState
 import com.rafagnin.tvshowcase.presentation.state.ScheduleState.EpisodesLoaded
@@ -63,9 +62,9 @@ class ScheduleFragment : Fragment(), ScheduleAdapter.AdapterCallback {
     }
 
     private fun openDetailScreen(model: EpisodeModel) {
-        val intent = Intent(context, EpisodeActivity::class.java)
-        intent.putExtra(EpisodeActivity.ID_EXTRA, model)
-        startActivity(intent)
+        findNavController().navigate(
+            ScheduleFragmentDirections.scheduleToEpisode(model)
+        )
     }
 
     private fun click(action: ScheduleAction) {
