@@ -13,13 +13,12 @@ jobs:
 
     steps:
       - name: Checkout project
-        uses: actions/checkout@v3
+        uses: actions/checkout@v1
 
       - name: Set up JDK
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v1
         with:
-          distribution: 'zulu'
-          java-version: '11'
+          java-version: 11
 
       - name: Build with Gradle
         run: ./gradlew build
@@ -32,13 +31,12 @@ jobs:
 
     steps:
       - name: Checkout project
-        uses: actions/checkout@v3
+        uses: actions/checkout@v1
 
       - name: Set up JDK
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v1
         with:
-          distribution: 'zulu'
-          java-version: '11'
+          java-version: 11
 
       - name: Run jacoco on all modules
         run: ./gradlew debugCoverage
@@ -59,7 +57,7 @@ jobs:
           path: build/reports/jacoco/allDebugCoverage
 
       - name: Upload to codecov
-        uses: codecov/codecov-action@v3
+        uses: codecov/codecov-action@v2
         with:
           files: "build/reports/jacoco/allDebugCoverage/allDebugCoverage.xml"
 
@@ -70,4 +68,4 @@ jobs:
           paths: ${{ github.workspace }}/build/reports/jacoco/allDebugCoverage/allDebugCoverage.xml
           token: ${{ secrets.GITHUB_TOKEN }}
           min-coverage-overall: 5
-          min-coverage-changed-files: 0 # temporary
+          min-coverage-changed-files: 60
