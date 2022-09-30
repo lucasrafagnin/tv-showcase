@@ -37,4 +37,11 @@
         <item name="colorOnSurfaceVariant">@color/blue_medium</item>
         <item name="colorSecondaryContainer">@color/gray_light</item>
     </style>
+
+    <style name="Theme.App.Starting" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/blue_dark</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_launcher_foreground</item>
+        <item name="windowSplashScreenAnimationDuration">1000</item>
+        <item name="postSplashScreenTheme">@style/Theme.TvShowcase</item>
+    </style>
 </resources>

@@ -21,6 +21,7 @@ paging = "3.1.1"
 retrofit = "2.9.0"
 room = "2.4.3"
 viewModel = "2.5.1"
+splashScreen = "1.0.0"
 
 [libraries]
 appCompat = { module = "androidx.appcompat:appcompat", version.ref = "appCompat" }
@@ -53,6 +54,7 @@ room = { module = "androidx.room:room-runtime", version.ref = "room" }
 roomCompiler = { module = "androidx.room:room-compiler", version.ref = "room" }
 roomCoroutines = { module = "androidx.room:room-ktx", version.ref = "room" }
 viewModel = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "viewModel" }
+splashScreen = { module = "androidx.core:core-splashscreen", version.ref = "splashScreen" }
 
 [bundles]
 moshi = ["moshiAdapter", "moshiKotlin"]

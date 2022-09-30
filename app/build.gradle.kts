@@ -33,7 +33,7 @@ android {
             )
         }
         getByName("debug") {
-            isTestCoverageEnabled = true
+            enableUnitTestCoverage = true
             isMinifyEnabled = false
             isShrinkResources = false
         }
@@ -73,6 +73,7 @@ dependencies {
     implementation(libs.paging)
     implementation(libs.retrofitMoshi)
     implementation(libs.viewModel)
+    implementation(libs.splashScreen)
 
     kapt(libs.hiltCompiler)
     kapt(libs.roomCompiler)
