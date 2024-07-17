@@ -1,6 +1,6 @@
 [versions]
 appCompat = "1.5.1"
-coil = "2.2.1"
+coil = "2.7.0"
 coroutines = "1.6.4"
 expandableText = "1.0.5"
 gradle = "7.3.0"
